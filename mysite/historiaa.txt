@@ -149,4 +149,19 @@ https://docs.djangoproject.com/en/4.1/howto/static-files/
 https://docs.djangoproject.com/en/4.1/ref/contrib/staticfiles/
 https://docs.djangoproject.com/en/4.1/howto/static-files/deployment/
 
+------------------------------
 
+Reusable apps
+A package can be imported with import foo.bar or from foo import bar. For a directory (like polls) to form a package, it must contain a special file __init__.py, even if this file is empty.
+
+The polls directory could now be copied into a new Django project and immediately reused. It’s not quite ready to be published though. For that, we need to package the app to make it easy for others to install.
+
+pip install setuptools
+First, create a parent directory for polls, outside of your Django project. Call this directory django-polls.
+moved polls directory to django-polls
+followed the django-documentation https://docs.djangoproject.com/en/4.1/intro/reusable-apps/
+step 8. ran command python setup.py sdist
+(more docs https://packaging.python.org/en/latest/tutorials/packaging-projects/)
+
+python -m pip install --user django-polls/dist/django-polls-0.1.tar.gz
+python -m pip uninstall django-polls
