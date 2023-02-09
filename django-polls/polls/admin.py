@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Question, Choice
+from .models import Question, Choice, Person
 
 
 # class QuestionAdmin(admin.ModelAdmin):
@@ -31,3 +31,4 @@ class ChoiceAdmin(admin.ModelAdmin):
 
 admin.site.register(Question, QuestionAdmin)
 admin.site.register(Choice, ChoiceAdmin)
+admin.site.register(Person)

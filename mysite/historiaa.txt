@@ -165,3 +165,8 @@ step 8. ran command python setup.py sdist
 
 python -m pip install --user django-polls/dist/django-polls-0.1.tar.gz
 python -m pip uninstall django-polls
+
+-----------------------------
+https://docs.djangoproject.com/en/4.1/topics/
+https://docs.djangoproject.com/en/4.1/howto/
+https://docs.djangoproject.com/en/4.1/ref/
