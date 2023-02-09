@@ -89,3 +89,25 @@ By default, the DetailView generic view uses a template called <app name>/<model
 In previous parts of the tutorial, the templates have been provided with a context that contains the question and latest_question_list context variables. For DetailView the question variable is provided automatically – since we’re using a Django model (Question), Django is able to determine an appropriate name for the context variable. However, for ListView, the automatically generated context variable is question_list. To override this we provide the context_object_name attribute, specifying that we want to use latest_question_list instead. As an alternative approach, you could change your templates to match the new default context variables – but it’s a lot easier to tell Django to use the variable you want.
 https://docs.djangoproject.com/en/4.1/topics/class-based-views/
 
+----------------------
+Tests don’t just identify problems, they prevent them
+That other developers want to see tests in your software before they take it seriously is yet another reason for you to start writing tests.
+Tests help teams work together
+Some programmers follow a discipline called “test-driven development”; they actually write their tests before they write their code. 
+
+python manage.py shell
+
+import datetime
+from django.utils import timezone
+from polls.models import Question
+# create a Question instance with pub_date 30 days in the future
+future_question = Question(pub_date=timezone.now() + datetime.timedelta(days=30))
+# was it published recently?
+future_question.was_published_recently()
+
+Since things in the future are not ‘recent’, this is clearly wrong.
+Create a test to expose the bug
+
+python manage.py test polls
+
+
