@@ -75,3 +75,12 @@ https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML/Getting
 Method-calling happens in the {% for %} loop: question.choice_set.all is interpreted as the Python code question.choice_set.all(), which returns an iterable of Choice objects and is suitable for use in the {% for %} tag.
 https://docs.djangoproject.com/en/4.1/topics/templates/
 
+Whenever you create a form that alters data server-side, use method="post". This tip isn’t specific to Django; it’s good web development practice in general.
+
+You should always return an HttpResponseRedirect after successfully dealing with POST data. This tip isn’t specific to Django; it’s good web development practice in general.
+
+https://docs.djangoproject.com/en/4.1/ref/request-response/
+
+Avoiding race conditions
+https://docs.djangoproject.com/en/4.1/ref/models/expressions/#avoiding-race-conditions-using-f
+
