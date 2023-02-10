@@ -3,8 +3,8 @@ from .models import Language, LanguageExample
 # Register your models here.
 
 @admin.register(Language)
-class Project(admin.ModelAdmin):
-    list_display = ["language_name", "owner", "language_created"]
+class LanguageAdmin(admin.ModelAdmin):
+    list_display = ["language_name", "owner", "created"]
 
 @admin.register(LanguageExample)
 class LanguageExampleAdmin(admin.ModelAdmin):

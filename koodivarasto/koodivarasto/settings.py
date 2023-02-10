@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'frameworks.apps.FrameworksConfig',
     'users.apps.UsersConfig',
     'polls',
     'languages.apps.LanguagesConfig',
