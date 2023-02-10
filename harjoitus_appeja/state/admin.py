@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib import messages
-from .models import State
+from .models import State, Student, Teacher
 
 class StateAdmin(admin.ModelAdmin):
 	list_display = ('name', 'active', 'created_on')
@@ -22,6 +22,8 @@ class StateAdmin(admin.ModelAdmin):
 	admin.site.add_action(make_inactive, "Make Inactive")
 
 admin.site.register(State, StateAdmin)
+admin.site.register(Student)
+admin.site.register(Teacher)
 
 # Disable delete option
 # from django.contrib import admin
