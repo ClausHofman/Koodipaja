@@ -5,5 +5,6 @@ from . import views
 app_name = "languages"
 
 urlpatterns = [
-    path('', views.projectIndex),
+    path('list/', views.listLanguages, name="language-list"),
+    path('language/<str:pk>/', views.viewSingleLanguage, name='view-language')
 ]

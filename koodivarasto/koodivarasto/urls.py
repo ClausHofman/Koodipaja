@@ -18,7 +18,7 @@ from django.urls import include, path
 
 urlpatterns = [
     path('',include('kotisivu.urls')),
-    path('languages/', include('languages.urls')),
+    path('', include('languages.urls')),
     path('polls/', include('polls.urls')),
     path('admin/', admin.site.urls),
 ]
