@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'frameworks.apps.FrameworksConfig',
     'users.apps.UsersConfig',
     'polls',
+    'kotisivu.apps.KotisivuConfig',
     'languages.apps.LanguagesConfig',
     'django.contrib.admin',
     'django.contrib.auth',
