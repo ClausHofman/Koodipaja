@@ -1,8 +1,9 @@
 {% extends 'main.html' %}
 
+{% load static %}
+
 {% block content %}
-<!-- <img style="max-width: 500px;" src="{{ project.featured_image.url }}" alt=""> -->
-  
+<img src="{% static 'languages/django-kuva.png' %}">  
 <h1>{{object.language_name}}</h1>
 
 <br>
