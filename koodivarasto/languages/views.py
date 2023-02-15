@@ -2,14 +2,6 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from .models import Language, LanguageExample
 
-def languagesIndex(request):
-    return HttpResponse("Hello, world. You're at the languages index.")
-
-def listLanguages(request):
-    context = {}
-    context['language'] = Language.objects.all()
-
-    return render(request, 'languages/list-languages.html', context)
 
 def viewSingleLanguage(request, pk):
     viewSingleLanguageObj = Language.objects.get(id=pk)
@@ -22,3 +14,14 @@ def listExamples(request):
     print(context)
 
     return render(request, 'languages/language-examples.html', context)
+
+
+
+def listLanguages(request):
+    # get the user profile using request (user-profile one-to-one relationship)
+    profile = request.user.profile
+    language = profile.language_set.all()
+
+    context = {'profile':profile, 'language':language}
+    print(context)
+    return render(request, 'languages/list-languages.html', context)

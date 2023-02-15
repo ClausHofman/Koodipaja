@@ -1,21 +1,18 @@
 {% extends "main.html" %}
 
-<link rel="stylesheet" href="languages.css">
-
 {% block content %}
-<h1>inside list-languages.html block tags: </h1>
+
+{% for language in language %}
 <table>
-    <tr>
-        <th></th>
-        {% for language in language %}
-        <tr>
-            <td>
-                <a href="{% url 'languages:language-list' %}">{{language.language_name}}</a>
-            </td>
-        </tr>
-        {% endfor %}
-    </tr>
+<tr>
+    <th></th>
+    <td>
+        <a href="{% url 'languages:view-language' language.id %}">{{language.language_name}}</a>
+    </td>
+</tr>
 </table>
+{% endfor %}
+
 <br>
-<h1>end of list-languages.html block tags.</h1>
+
 {% endblock content %}
