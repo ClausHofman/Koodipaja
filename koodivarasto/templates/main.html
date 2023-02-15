@@ -22,21 +22,18 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-link" href="{% url 'kotisivu:kotisivu' %}">Home</a>
-                <a class="nav-link" href="{% url 'languages:language-list' %}">Languages</a>
-                <a class="nav-link" href="{% url 'testing:testing' %}">Testing</a>
-                <a class="nav-link" href="">4</a>
-                <a class="nav-link" href="">5</a>
+                <a class="nav-link" href="{% url 'kotisivu:kotisivu' %}">Home</a>                
                 <div class="dropdown">
-                  <span>Mouse over me</span>
+                  <span class="nav-span">Topics</span>
                   <div class="dropdown-content">
-                  <a href="#">Hello World!</a>
-                  <a href="#">Hello World!</a>
-                  <a href="#">Hello World!</a>
-                  <a href="#">Hello World!</a>
-                  <a href="#">Hello World!</a>
+                    <a class="nav-link" href="{% url 'languages:language-list' %}">Languages</a>
                   </div>
                 </div>
+                <a class="nav-link" href="{% url 'testing:testing' %}">Testing</a>
+                <a class="nav-link" href="{% url 'testing:testing' %}">Testing</a>
+                <a class="nav-link" href="{% url 'testing:testing' %}">Testing</a>
+                <a class="nav-link" href="{% url 'testing:testing' %}">Testing</a>
+                <a class="nav-link" href="{% url 'testing:testing' %}">Testing</a>
               </div>
             </div>
           </div>
