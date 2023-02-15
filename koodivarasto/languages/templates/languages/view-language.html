@@ -1,6 +1,4 @@
-{% extends 'main.html' %}
-
-{% load static %}
+{% extends "main.html" %}
 
 {% block content %}
 
@@ -10,4 +8,20 @@
 <h2>{{object.description}}</h2>
 
 </table>
+
+<br>
+
+{% for title in title %}
+<table>
+<tr>
+    <th></th>
+    <td>
+        {{title}}
+    </td>
+</tr>
+</table>
+{% endfor %}
+
+<br>
+
 {% endblock content %}

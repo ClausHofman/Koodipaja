@@ -13,10 +13,12 @@ class Language(models.Model):
         return self.language_name
 
 class LanguageExample(models.Model):
+    owner = models.ForeignKey(Profile, null=True, blank=True, on_delete=models.SET_NULL)
     language = models.ForeignKey(Language, null=True, blank=True, on_delete=models.SET_NULL)
     title = models.CharField(max_length=200)
     description = models.TextField(null=True, blank=True)
     created = models.DateTimeField('created')
+    id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
 
     def __str__(self):
         return self.title
