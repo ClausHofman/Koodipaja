@@ -129,3 +129,4 @@ dmypy.json
 .pyre/
 
 jotain_ihme_vahinkoja.txt
+db_backups
