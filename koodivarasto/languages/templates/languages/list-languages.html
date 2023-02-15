@@ -10,7 +10,7 @@
         {% for language in language %}
         <tr>
             <td>
-                <a href="{% url 'languages:view-language' language.id %}">{{language.language_name}}</a>
+                <a href="{% url 'languages:language-list' %}">{{language.language_name}}</a>
             </td>
         </tr>
         {% endfor %}
