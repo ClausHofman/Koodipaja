@@ -7,7 +7,7 @@
 <tr>
     <th></th>
     <td>
-        <a href="">{{xx.language_name}}</a>
+        <a href="{% url 'tktutkija:kysely3' xx.id %}">{{xx.language_name}}</a>
     </td>
 </tr>
 </table>
@@ -16,6 +16,5 @@
 <br>
 
 <a href="{% url 'tktutkija:kysely1' %}">kysely1 sivu</a>
-<a href="{% url 'tktutkija:kysely3' user.profile.id %}">kysely3 sivu</a>
 
 {% endblock content %}
