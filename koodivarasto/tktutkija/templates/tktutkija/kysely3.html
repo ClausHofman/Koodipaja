@@ -1,0 +1,21 @@
+{% extends "main.html" %}
+
+{% block content %}
+
+
+<table>
+<tr>
+    <th></th>
+    <td>
+        <a href="{% url 'tktutkija:kysely3' kysely.id %}">{{kysely}}</a>
+    </td>
+</tr>
+</table>
+
+
+<br>
+
+<a href="{% url 'tktutkija:kysely2' %}">kysely2 sivu</a>
+
+{% endblock content %}
+
