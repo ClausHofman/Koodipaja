@@ -1,0 +1,18 @@
+{% extends "main.html" %}
+
+{% block content %}
+
+{% for language in language %}
+<table>
+<tr>
+    <th></th>
+    <td>
+        <a href="{% url 'languages:view-language' language.id %}">{{language.language_name}}</a>
+    </td>
+</tr>
+</table>
+{% endfor %}
+
+<br>
+
+{% endblock content %}

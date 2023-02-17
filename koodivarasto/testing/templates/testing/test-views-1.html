@@ -1,0 +1,23 @@
+
+
+
+<ul>
+    <li>
+          {{user}}
+          {{user.profile.created}}
+          {{user.profile.id}}
+    </li>
+</ul>
+
+<br>
+
+<ul>
+    <li>
+        
+        {{language}}
+        
+    </li>
+</ul>
+<br><br><br>
+
+<a href="{% url 'testing:viewtest2' user.profile.id %}">no eihän tästä tuu taas mittään!</a>
