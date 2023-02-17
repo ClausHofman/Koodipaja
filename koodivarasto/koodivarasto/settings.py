@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'tktutkija.apps.TktutkijaConfig',
     'testing.apps.TestingConfig',
     'frameworks.apps.FrameworksConfig',
     'users.apps.UsersConfig',
