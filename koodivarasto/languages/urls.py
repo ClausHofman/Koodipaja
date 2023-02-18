@@ -6,6 +6,7 @@ app_name = "languages"
 
 urlpatterns = [
     path('language/<str:pk>/', views.viewSingleLanguage, name='view-language'),
+    path('language-example/<str:pk>/', views.viewSingleExample, name='view-example'),
     # path('list-examples/', views.listExamples, name='language-examples'),
     path('list/', views.listLanguages, name='language-list'),
 ]
