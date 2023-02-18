@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Language, LanguageExample
+from .models import Language, LanguageExample, Tag
 # Register your models here.
 
 @admin.register(Language)
@@ -12,3 +12,5 @@ class LanguageExampleAdmin(admin.ModelAdmin):
     search_fields = ['description']
     class Meta:
         list_filter = ['-created']
+
+admin.site.register(Tag)
