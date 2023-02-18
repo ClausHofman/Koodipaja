@@ -1,0 +1,20 @@
+{% extends "main.html" %}
+
+{% block content %}
+
+{% for xx in kysely %}
+<table>
+<tr>
+    <th></th>
+    <td>
+        <a href="{% url 'tktutkija:kysely3' xx.id %}">{{xx.language_name}}</a>
+    </td>
+</tr>
+</table>
+{% endfor %}
+
+<br>
+
+<a href="{% url 'tktutkija:kysely1' %}">kysely1 sivu</a>
+
+{% endblock content %}

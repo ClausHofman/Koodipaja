@@ -2,13 +2,6 @@
 
 {% block content %}
 
-<h1>{{object.language_name}}</h1>
-
-<br>
-<h2>{{object.description}}</h2>
-
-</table>
-
 <br>
 
 {% for title in title %}
@@ -17,7 +10,7 @@
     <th></th>
     <td>
         <a href="">{{title}}</a>
-        {{created}}
+        <a href="{% url 'languages:view-language' language.id %}">{{title}}</a>
     </td>
 </tr>
 </table>
