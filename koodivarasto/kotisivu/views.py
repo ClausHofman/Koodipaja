@@ -5,3 +5,6 @@ from django.shortcuts import render
 def kotisivu(request):
 
     return render(request, 'main.html')
+
+def kotisivu_notes(request):
+    return render(request, 'site_notes.html')

@@ -2,12 +2,12 @@
 
 {% block content %}
 
-{% for language in language %}
+{% for xx in language %}
 <table>
 <tr>
     <th></th>
     <td>
-        <a href="{% url 'languages:view-language' language.id %}">{{language.language_name}}</a>
+        <a href="{% url 'languages:view-language' xx.id %}">{{xx.language_name}}</a>
     </td>
 </tr>
 <tr>
@@ -18,5 +18,9 @@
 {% endfor %}
 
 <br>
+
+{% for xx in esimerkki %}
+  <p>{{xx.title}}</p>
+{% endfor %}
 
 {% endblock content %}
