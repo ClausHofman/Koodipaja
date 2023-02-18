@@ -32,17 +32,19 @@
                 <a class="nav-link" href="{% url 'tktutkija:kysely1' %}">Tutkija</a>
                 <a class="nav-link" href="{% url 'testing:testing' %}">Testing</a>
                 <a class="nav-link" href="{% url 'testing:testing' %}">Testing</a>
-                <a class="nav-link" href="{% url 'testing:testing' %}">Testing</a>
+                <a class="nav-link" href="{% url 'kotisivu:site-notes' %}">Site Notes</a>
 
               </div>
             </div>
           </div>
         </nav>
-
+<a href="{% url 'kotisivu:site-notes' %}">View site notes</a>
         <br>
 
       {% block content %}
       {% endblock content %}
+      
+      <br>
     <p>FOOTER</p>
 </body>
 

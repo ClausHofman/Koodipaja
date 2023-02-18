@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Framework, FrameworkExample
+from .models import Framework, FrameworkExample, Tag
 # Register your models here.
 
 @admin.register(Framework)
@@ -12,3 +12,5 @@ class FrameworkExampleAdmin(admin.ModelAdmin):
     search_fields = ['description']
     class Meta:
         list_filter = ['-created']
+
+admin.site.register(Tag)
