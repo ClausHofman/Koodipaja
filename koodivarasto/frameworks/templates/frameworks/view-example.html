@@ -1,0 +1,20 @@
+{% extends "main.html" %}
+
+{% block content %}
+
+<br>
+
+{% for xx in example %}
+<table>
+<tr>
+    <th></th>
+    <td>
+        {{xx.title}}
+    </td>
+</tr>
+</table>
+{% endfor %}
+
+<br>
+
+{% endblock content %}
