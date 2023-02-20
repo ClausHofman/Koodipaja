@@ -14,7 +14,7 @@ class Project(models.Model):
 
 class Todo(models.Model):
     owner = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True)
-    project = models.ForeignKey(Project, on_delete=models.SET_NULL)
+    project = models.ForeignKey(Project, on_delete=models.SET_NULL, null=True)
     title = models.CharField(max_length=200)
     body = models.TextField(null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)

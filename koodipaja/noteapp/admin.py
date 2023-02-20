@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import GeneralNote, Tag
+
+admin.site.register(GeneralNote)
+admin.site.register(Tag)
