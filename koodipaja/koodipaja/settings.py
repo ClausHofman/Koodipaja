@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'kotisivu.apps.KotisivuConfig',
     'languages.apps.LanguagesConfig',
+    'todoapp.apps.TodoappConfig',
+    'noteapp.apps.NoteappConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
