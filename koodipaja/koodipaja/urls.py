@@ -20,7 +20,6 @@ urlpatterns = [
     path('',include('users.urls')),
     path('',include('kotisivu.urls')),
     path('', include('languages.urls')),
-    path('polls/', include('polls.urls')),
     path('admin/', admin.site.urls),
     path('',include('testing.urls')),
     path('',include('tktutkija.urls')),

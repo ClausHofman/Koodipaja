@@ -36,7 +36,6 @@ INSTALLED_APPS = [
     'testing.apps.TestingConfig',
     'frameworks.apps.FrameworksConfig',
     'users.apps.UsersConfig',
-    'polls',
     'kotisivu.apps.KotisivuConfig',
     'languages.apps.LanguagesConfig',
     'django.contrib.admin',
