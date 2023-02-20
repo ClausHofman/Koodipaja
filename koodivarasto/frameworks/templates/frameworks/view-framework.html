@@ -3,7 +3,7 @@
 {% block content %}
 
 <br>
-<h5>{{object.language_name}}</h5>
+<h5>{{object.framework_name}}</h5>
 <hr>
 
 
@@ -12,7 +12,7 @@
 <tr>
     <th></th>
     <td>
-        <a href="{% url 'languages:view-example' esim.id %}">{{esim.title}}</a>
+        <a href="{% url 'frameworks:view-example' esim.id %}">{{esim.title}}</a>
     </td>
 </tr>
 </table>

@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from languages.models import Language, LanguageExample, Tag
+from frameworks.models import Framework, FrameworkExample
 from users.models import Profile
 
 # Create your views here.
@@ -10,12 +11,15 @@ def tktIndex(request):
 
 
 def kysely1(request):
-    kysely = Language.objects.all()
-    kysely2 = LanguageExample.objects.all()
-    kysely3 = Tag.objects.all()
+    language = Language.objects.all()
+    languge_example = LanguageExample.objects.all()
+    tag = Tag.objects.all()
+    framework = Framework.objects.all()
+    framework_example = FrameworkExample.objects.all()
 
     return render(request, 'tktutkija/kysely1.html', {
-        'kysely': kysely, 'kysely2':kysely2, 'kysely3':kysely3
+        'language': language, 'language_example':languge_example, 'tag':tag,
+        'framework':framework, 'framework_example':framework_example
         })
 
 

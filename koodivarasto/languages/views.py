@@ -26,7 +26,7 @@ def listLanguages(request):
     # print(language)
     examples = LanguageExample.objects.all()
     esimerkit = profile.languageexample_set.all()
-    print(esimerkit)
+    # print(esimerkit)
 
     context = {'profile':profile, 'language':language, 'example':examples, 'esimerkki':esimerkit}
     # print(context)
