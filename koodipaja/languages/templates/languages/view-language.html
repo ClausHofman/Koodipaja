@@ -2,10 +2,11 @@
 
 {% block content %}
 
-<br>
-<h5>{{object.language_name}}</h5>
+<a class="backButton" href="{% url 'languages:language-list' %}"><i class="im im-angle-left"></i>Go Back</a>
+<div>
+<a class="tag tag--pill tag--sub settings__btn tag--lg" href="{% url 'languages:new-example' object.id %}">Add new example</a>
+</div>
 <hr>
-
 
 {% for esim in esimerkki %}
 <table>

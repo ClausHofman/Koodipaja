@@ -1,11 +1,13 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Language, LanguageExample
 from users.models import Profile
+from .forms import LanguageExampleForm
 
 def viewSingleLanguage(request, pk):
     profile = request.user.profile
     esimerkit = profile.languageexample_set.filter(language__exact=f'{pk}')
+
 
     context = {'esimerkki':esimerkit}
 
@@ -34,22 +36,39 @@ def listLanguages(request):
 
 
 def viewSingleExample(request, pk):
-    # profile = request.user.profile
-    # esimerkki = profile.languageexample_set.filter(language__exact=f'{pk}')
+    profile = request.user.profile
+    language = profile.language_set.get(languageexample__exact=f'{pk}')
     esimerkki = LanguageExample.objects.filter(id=pk)
     
-    context = {'example':esimerkki}
+    context = {'example':esimerkki, 'object':language}
 
     return render(request, 'languages/view-example.html', context)
 
+def createLanguageExample(request, pk):
+    form = LanguageExampleForm()
+
+    if request.method == 'POST':
+        form = LanguageExampleForm(request.POST)
+        if form.is_valid():
+            form.save()
+                        
+            return redirect('languages:view-language', pk)
 
 
+    context = {'form':form}
+    context['object'] = Language.objects.get(id=pk)
+    return render(request, "languages/languageexample_form.html", context)
 
-# def viewSingleExample(request, pk):
-#     profile = request.user.profile
-#     esimerkit = profile.languageexample_set.filter(id=pk)
+# def createLanguageExample(request):
+#     form = LanguageExampleForm()
+
+#     if request.method == 'POST':
+#         form = LanguageExampleForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+                        
+#             return redirect('languages:language-list')
 
 
-#     context = {'esimerkki':esimerkit}
-
-#     return render(request, 'languages/view-language.html', context)
+#     context = {'form':form}
+#     return render(request, "languages/languageexample_form.html", context)
