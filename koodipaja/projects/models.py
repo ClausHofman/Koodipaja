@@ -31,8 +31,9 @@ class ProjectPage(models.Model):
     project = models.ForeignKey(Project, on_delete=models.SET_NULL, null=True)
     title = models.CharField(max_length=500)
     page_number = models.IntegerField()
+    created = models.DateTimeField(auto_now_add=True)
     tags = models.ManyToManyField('ProjectPageTag', blank=True)
-    id = models.AutoField(primary_key=True, unique=True, editable=True)
+    id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
 
     def __str__(self):
         return self.title
@@ -45,7 +46,7 @@ class ProjectArticle(models.Model):
     body = models.TextField(null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     tags = models.ManyToManyField('ProjectArticleTag', blank=True)
-    id = models.AutoField(unique=True, primary_key=True, editable=False)
+    id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
 
     def __str__(self):
         return self.title

@@ -31,13 +31,12 @@
             <button class="dropbtn">Topics</button>
             <i class="fa fa-caret-down"></i>
             <div class="dropdown-content">
-              <a href="{% url 'languages:language-list' %}">Languages</a>
+              <a href="{% url 'languages:list-languages' %}">Languages</a>
               <a href="{% url 'frameworks:framework-list' %}">Frameworks</a>
             </div>
           </div>
+          <a class="nav-link" href="{% url 'projects:list-projects' %}">Projects</a>
           <a class="nav-link" href="{% url 'tktutkija:kysely1' %}">Tutkija</a>
-          <a class="nav-link" href="{% url 'testing:testing' %}">Testing</a>
-          <a class="nav-link" href="{% url 'testing:testing' %}">Testing</a>
           <a class="nav-link" href="{% url 'testing:testing' %}">Testing</a>
 
         </div>
@@ -54,12 +53,12 @@
   <p>Click on Tutkija in the navigation bar to see some database queries.</p>
   <p>Added a form to create a new example (go to Languages and select a language first)</p>
   <p>Added a 'Go Back' link to ease navigation.</p>
+  <p>User can create projects, project pages and articles to those pages now (currently only from the admin panel).</p>
   <hr>
   <h5 style="padding-bottom: 10px;">Development goals and ideas:</h5>
   <p>Delete and update forms for examples.</p>
   <p>Also need forms for frameworks app</p>
-  <p>Make pages to view projects and their related todos (todoapp)</p>
-  <p>(idea) ability to create a project, ability to add pages the project, and edit information on those pages.</p>
+  <p>Create forms for projects app.</p>
   <p>Ability to add comments or such to an example page might be useful.</p>
   <p>Create a login page. Most pages require the user to be logged in. (creating a superuser works)</p>
   <p>Implement searching.</p>

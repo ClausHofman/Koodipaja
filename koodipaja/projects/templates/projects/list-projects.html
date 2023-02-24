@@ -1,0 +1,24 @@
+{% extends "main.html" %}
+
+{% block content %}
+<h4 style="padding-top: 5px;">Here's the current projects:</h4>
+{% for xx in project %}
+<table>
+<tr>
+    <th></th>
+    <td>
+        <a href="{% url 'projects:view-single-project' xx.id %}">{{xx.title}}</a>
+    </td>
+</tr>
+<tr>
+    <th></th>
+    <td></td>
+</tr>
+</table>
+{% endfor %}
+
+<br>
+
+{% endblock content %}
+
+<!-- <a href="{% url 'projects:view-project' xx.id %}">{{xx.title}}</a> -->

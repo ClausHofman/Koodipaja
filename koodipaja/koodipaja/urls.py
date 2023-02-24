@@ -17,11 +17,12 @@ from django.contrib import admin
 from django.urls import include, path
 
 urlpatterns = [
+    path('admin/', admin.site.urls),
     path('',include('users.urls')),
     path('',include('kotisivu.urls')),
-    path('', include('languages.urls')),
-    path('admin/', admin.site.urls),
+    path('',include('languages.urls')),
     path('',include('testing.urls')),
     path('',include('tktutkija.urls')),
     path('',include('frameworks.urls')),
+    path('',include('projects.urls')),
 ]
