@@ -1,0 +1,21 @@
+{% extends "main.html" %}
+
+{% block content %}
+
+<a class="backButton" href="{% url 'projects:list-projects' %}"><i class="im im-angle-left"></i>Go Back</a>
+<hr>
+
+{% for page in project_pages %}
+<table>
+<tr>
+    <th></th>
+    <td>
+        <a href="{% url 'projects:project-page' page.id %}">{{page.title}} ({{page.page_number}})</a>
+    </td>
+</tr>
+</table>
+{% endfor %}
+
+<br>
+
+{% endblock content %}
