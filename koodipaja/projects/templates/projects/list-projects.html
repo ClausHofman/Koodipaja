@@ -1,7 +1,12 @@
 {% extends "main.html" %}
 
 {% block content %}
-<h4 style="padding-top: 5px;">Here's the current projects:</h4>
+
+<div>
+    <a href="{% url 'projects:create-project' %}">New Project -&nbsp;</a><a href="{% url 'projects:create-project-tag' %}">New Project Tag</a>
+</div>
+    <hr>
+
 {% for xx in project %}
 <table>
 <tr>

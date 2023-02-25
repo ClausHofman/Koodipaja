@@ -2,7 +2,10 @@
 
 {% block content %}
 
-<a class="backButton" href="{% url 'projects:list-projects' %}"><i class="im im-angle-left"></i>Go Back</a>
+<a href="{% url 'projects:list-projects' %}">Go Back</a>
+<div>
+    <a href="{% url 'projects:create-project-page' object.id %}">Add new page</a>
+</div>
 <hr>
 
 {% for page in project_pages %}

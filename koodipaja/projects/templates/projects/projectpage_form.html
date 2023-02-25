@@ -1,14 +1,11 @@
 {% extends 'main.html' %}
 {% block content %}
 
+<main>
+    <div >
+        <div >
+            <a class="backButton" href="{% url 'projects:view-single-project' object.id %}">Go Back</a>
 
-
-<!-- Main Section -->
-<main class="formPage my-xl">
-    <div class="content-box">
-        <div class="formWrapper">
-            <a class="backButton" href="{% url 'languages:view-language' object.id %}"><i class="im im-angle-left"></i>Back</a>
-            <br><br>
 
             <form class="form" action=""  method="POST" enctype="multipart/form-data">
                 {% csrf_token %}

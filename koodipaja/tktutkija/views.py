@@ -2,6 +2,7 @@ from django.shortcuts import render
 from languages.models import Language, LanguageExample, Tag
 from frameworks.models import Framework, FrameworkExample
 from users.models import Profile
+from projects.models import *
 
 # Create your views here.
 
@@ -16,6 +17,9 @@ def kysely1(request):
     tag = Tag.objects.all()
     framework = Framework.objects.all()
     framework_example = FrameworkExample.objects.all()
+    profile = request.user.profile
+    testi_kysely = profile.project_set.all()
+    print(testi_kysely)
 
     return render(request, 'tktutkija/kysely1.html', {
         'language': language, 'language_example':languge_example, 'tag':tag,
@@ -25,7 +29,7 @@ def kysely1(request):
 
 def kysely2(request):
     profile = request.user.profile
-    muuttuja = profile.language_set.all()
+    muuttuja = profile.owner
 
     context = {'profile':profile, 'kysely':muuttuja}
 
