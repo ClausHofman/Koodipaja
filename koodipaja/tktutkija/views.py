@@ -18,7 +18,7 @@ def kysely1(request):
     framework = Framework.objects.all()
     framework_example = FrameworkExample.objects.all()
     profile = request.user.profile
-    testi_kysely = profile.project_set.all()
+    testi_kysely = profile.projectarticle_set.all()
     print(testi_kysely)
 
     return render(request, 'tktutkija/kysely1.html', {

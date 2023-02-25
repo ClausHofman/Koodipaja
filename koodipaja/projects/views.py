@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from users.models import Profile
 from .models import Project, ProjectPage, ProjectArticle
-from .forms import ProjectForm, ProjectTagForm, ProjectPageForm
+from .forms import ProjectForm, ProjectTagForm, ProjectPageForm, ProjectArticleForm
 
 def listProjects(request):
     profile = request.user.profile
@@ -13,7 +13,7 @@ def listProjects(request):
 
 def viewSingleProject(request, pk):
     profile = request.user.profile
-    project_pages = profile.projectpage_set.filter(project__exact=f'{pk}')
+    project_pages = profile.projectpage_set.filter(project__id=pk)
 
     context = {'project_pages':project_pages}
     
@@ -23,15 +23,13 @@ def viewSingleProject(request, pk):
 
 def viewProjectPage(request, pk):
     profile = request.user.profile
-    project_articles = profile.projectarticle_set.filter(project_page__exact=f'{pk}')
-    project = profile.project_set.get(projectpage__exact=f'{pk}')
+    articles = profile.projectarticle_set.filter(project_page__id=pk)
 
-    context = {'project_articles':project_articles, 'object':project}
-
-    return render(request, 'projects/project-page.html', context)
-
+    context = {'articles':articles}
+    return render(request, 'projects/view-project-page.html', context)
 
 # FORMS
+
 def createProject(request):
     form = ProjectForm()
 
@@ -64,8 +62,8 @@ def createProjectPage(request, pk):
     # count_pages = len(ProjectPage.objects.filter(project__title__startswith='EKA'))
     count_pages = len(ProjectPage.objects.filter(project_id=pk))
     page_number = count_pages + 1
-    form = ProjectPageForm(initial={'owner':f'{profile}', 'project':f'{project}', 
-                                    'page_number':f'{page_number}'})
+    form = ProjectPageForm(initial={'owner':profile, 'project':project, 
+                                    'page_number':page_number})
 
     if request.method == 'POST':
         form = ProjectPageForm(request.POST)
@@ -79,3 +77,48 @@ def createProjectPage(request, pk):
     context['object'] = Project.objects.get(id=pk)
     return render(request, "projects/projectpage_form.html", context)
 
+
+
+
+
+
+
+
+
+# def createProjectArticle(request, pk):
+#     profile = request.user.profile
+#     project = ProjectPage.objects.get(id=pk)
+#     testi_kysely = ProjectPage.objects.all()
+#     print(project)
+#     print(testi_kysely)
+#     # count_pages = len(ProjectPage.objects.filter(project__title__startswith='EKA'))
+#     # project_page = ProjectPage.objects.get(id=pk)
+#     # print(project_page)
+#     form = ProjectArticleForm(initial={'owner':f'{profile}', 'project':f'{project}'})
+
+#     if request.method == 'POST':
+#         form = ProjectArticleForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+                        
+#             return redirect('projects:view-project-page', pk)
+
+
+#     context = {'form':form, 'object':project}
+#     return render(request, "projects/projectarticle_form.html", context)
+
+# TESTING ETC
+
+# def viewSingleProject(request, pk):
+#     profile = request.user.profile
+#     projects = profile.project_set.filter(id=pk) # jäin tähän # huom! go back etc dynaamisissa linkeissä id:n pitää olla sama!
+#     project_pages = profile.projectpage_set.filter(project__id=pk)
+#     project_articles = profile.projectarticle_set.filter(project__id=pk)
+#     print(projects)
+#     print(project_pages)
+#     print(project_articles)
+#     context = {'project_pages':project_pages, 'project_articles':project_articles, 'projects':projects}
+    
+#     context['object'] = Project.objects.get(id=pk)
+
+#     return render(request, 'projects/view-single-project.html', context)

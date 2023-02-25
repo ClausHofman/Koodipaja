@@ -1,0 +1,21 @@
+{% extends "main.html" %}
+
+{% block content %}
+
+<a href="{{request.GET.next}}">Go Back</a>
+<hr>
+
+{% for article in articles %}
+<table>
+<tr>
+    <th></th>
+    <td>
+        <a href="">{{article.title}}</a>
+    </td>
+</tr>
+</table>
+{% endfor %}
+
+<br>
+
+{% endblock content %}

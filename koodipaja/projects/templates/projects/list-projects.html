@@ -3,7 +3,7 @@
 {% block content %}
 
 <div>
-    <a href="{% url 'projects:create-project' %}">New Project -&nbsp;</a><a href="{% url 'projects:create-project-tag' %}">New Project Tag</a>
+    <a href="{% url 'projects:create-project' %}?next={{request.path}}">New Project -&nbsp;</a><a href="{% url 'projects:create-project-tag' %}?next={{request.path}}">New Project Tag</a>
 </div>
     <hr>
 

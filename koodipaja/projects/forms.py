@@ -18,8 +18,8 @@ class ProjectPageForm(ModelForm):
         model = ProjectPage
         fields = ['owner', 'project', 'title', 'page_number', 'tags']
         widgets = {
-            'owner':forms.TextInput(),
-            'project':forms.TextInput(),
+            'owner':forms.Select(),
+            'project':forms.Select(),
         }
 
 class ProjectPageTagForm(ModelForm):
@@ -31,6 +31,12 @@ class ProjectArticleForm(ModelForm):
     class Meta:
         model = ProjectArticle
         fields = ['owner', 'project', 'project_page', 'title', 'body', 'tags']
+        widgets = {
+            'owner':forms.TextInput(),
+            'project':forms.TextInput(),
+            'project_page':forms.TextInput(),
+        }
+
 
 class ProjectArticleTagForm(ModelForm):
     class Meta:

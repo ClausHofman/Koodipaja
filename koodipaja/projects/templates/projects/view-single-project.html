@@ -13,7 +13,7 @@
 <tr>
     <th></th>
     <td>
-        <a href="{% url 'projects:project-page' page.id %}">{{page.title}} ({{page.page_number}})</a>
+        <a href="{% url 'projects:view-project-page' page.id %}?next={{request.path}}">{{page.title}} ({{page.page_number}}) {{page.id}}</a>
     </td>
 </tr>
 </table>
