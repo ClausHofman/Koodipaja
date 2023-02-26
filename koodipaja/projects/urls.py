@@ -10,4 +10,6 @@ urlpatterns = [
     path('create-project-tag/',views.createProjectTag, name="create-project-tag"),
     path('create-project-page/<str:pk>/',views.createProjectPage, name="create-project-page"),
     path('view-project-page/<str:pk>/',views.viewProjectPage, name='view-project-page'),
+    path('create-project-article/<str:pk>/',views.createProjectArticle, name='create-article'),
+    path('create-project-page-tag/<str:pk>/',views.createProjectPageTag, name="create-project-page-tag"),
 ]

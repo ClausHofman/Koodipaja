@@ -2,7 +2,10 @@
 
 {% block content %}
 
-<a href="{{request.GET.next}}">Go Back</a>
+<a href="{% url 'projects:view-single-project' object2.id %}">Go Back</a>
+<div>
+    <a href="{% url 'projects:create-article' object.id %}?next={{request.path}}">Create new article</a>
+</div>
 <hr>
 
 {% for article in articles %}
@@ -10,12 +13,13 @@
 <tr>
     <th></th>
     <td>
-        <a href="">{{article.title}}</a>
+        <h5>{{article.title}}</h5>
     </td>
 </tr>
+<tr><th><td>
+    {{article.body}}
+</td></th></tr>
 </table>
 {% endfor %}
-
-<br>
 
 {% endblock content %}

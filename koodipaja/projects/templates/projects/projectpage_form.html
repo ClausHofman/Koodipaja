@@ -5,7 +5,7 @@
     <div >
         <div >
             <a class="backButton" href="{% url 'projects:view-single-project' object.id %}">Go Back</a>
-
+            <hr>
 
             <form class="form" action=""  method="POST" enctype="multipart/form-data">
                 {% csrf_token %}

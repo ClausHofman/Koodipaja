@@ -32,9 +32,9 @@ class ProjectArticleForm(ModelForm):
         model = ProjectArticle
         fields = ['owner', 'project', 'project_page', 'title', 'body', 'tags']
         widgets = {
-            'owner':forms.TextInput(),
-            'project':forms.TextInput(),
-            'project_page':forms.TextInput(),
+            'owner':forms.Select(),
+            'project':forms.Select(),
+            'project_page':forms.Select(),
         }
 
 
