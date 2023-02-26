@@ -2,7 +2,10 @@
 
 {% block content %}
 
-<a class="backButton" href="{% url 'projects:list-projects' %}"><i class="im im-angle-left"></i>Go Back</a>
+<a href="{% url 'projects:list-projects' %}">Go Back</a>
+<div>
+    <a href="{% url 'projects:create-project-page' object.id %}">Add new page -&nbsp;</a><a href="{% url 'projects:create-project-page-tag' object.id %}">New Page Tag</a>
+</div>
 <hr>
 
 {% for page in project_pages %}
@@ -10,7 +13,7 @@
 <tr>
     <th></th>
     <td>
-        <a href="{% url 'projects:project-page' page.id %}">{{page.title}} ({{page.page_number}})</a>
+        <a href="{% url 'projects:view-project-page' page.id %}?next={{request.path}}">{{page.title}} ({{page.page_number}}) {{page.id}}</a>
     </td>
 </tr>
 </table>

@@ -1,14 +1,11 @@
 {% extends 'main.html' %}
 {% block content %}
 
-
-
-<!-- Main Section -->
-<main class="formPage my-xl">
-    <div class="content-box">
-        <div class="formWrapper">
-            <a class="backButton" href="{% url 'languages:view-language' object.id %}"><i class="im im-angle-left"></i>Back</a>
-            <br><br>
+<main>
+    <div>
+        <div>
+            <a href="{{ request.GET.next }}">Go Back</a>
+            <hr>
 
             <form class="form" action=""  method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
@@ -18,7 +15,7 @@
                     <tr>
                         <th>
                             <td>
-                                <label for="formInput#text">{{field.label}}</label>
+                                <label>{{field.label}}</label>
                             </td>
                         </th>
                     </tr>

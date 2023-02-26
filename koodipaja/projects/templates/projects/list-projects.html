@@ -1,13 +1,18 @@
 {% extends "main.html" %}
 
 {% block content %}
-<h4 style="padding-top: 5px;">Here's the current projects:</h4>
+
+<div>
+    <a href="{% url 'projects:create-project' %}?next={{request.path}}">New Project -&nbsp;</a><a href="{% url 'projects:create-project-tag' %}?next={{request.path}}">New Project Tag</a>
+</div>
+    <hr>
+
 {% for xx in project %}
 <table>
 <tr>
     <th></th>
     <td>
-        <a href="{% url 'projects:view-single-project' xx.id %}">{{xx.title}}</a>
+        <a href="{% url 'projects:view-single-project' xx.id %}">{{xx.title}}{{xx.id}}</a>
     </td>
 </tr>
 <tr>
@@ -16,8 +21,6 @@
 </tr>
 </table>
 {% endfor %}
-
-<br>
 
 {% endblock content %}
 

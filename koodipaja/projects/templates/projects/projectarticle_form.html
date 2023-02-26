@@ -1,0 +1,38 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<main>
+    <div>
+        <div>
+            <a href="{{request.GET.next}}">Go Back</a>
+            <hr>
+
+            <form class="form" action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                {% for field in form %}
+                <table>
+                    <tr>
+                        <th>
+                        <td>
+                            <label>{{field.label}}</label>
+                        </td>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                        <td>
+                            {{field}}
+                        </td>
+                        </th>
+                    </tr>
+                </table>
+                {% endfor %}
+
+                <input type="submit" value="Submit" />
+            </form>
+        </div>
+    </div>
+</main>
+
+{% endblock content %}
