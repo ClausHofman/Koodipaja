@@ -10,16 +10,31 @@
 
 {% for article in articles %}
 <table>
-<tr>
-    <th></th>
-    <td>
-        <h5>{{article.title}}</h5>
-    </td>
-</tr>
-<tr><th><td>
-    {{article.body|linebreaksbr}}
-</td></th></tr>
+    <tr>
+        <th></th>
+        <td>
+            {% if article.title %}
+            <h5>{{article.title}}</h5>
+        </td>
+    </tr>
+    <tr>
+        <th>
+        <td>
+            {{article.body|linebreaksbr}}
+        </td>
+        </th>
+    </tr>
+    {% else %}
+    <tr>
+        <th>
+        <td>
+            {{article.body|linebreaksbr}}
+        </td>
+        </th>
+    </tr>
+    {% endif %}
 </table>
+
 {% endfor %}
 
 {% endblock content %}
