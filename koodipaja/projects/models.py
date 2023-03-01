@@ -61,6 +61,11 @@ class ProjectArticle(models.Model):
     def __str__(self):
         return self.title or ''
 
+    class Meta:
+        # sort by "the date" in descending order unless
+        # overridden in the query with order_by()
+        ordering = ['created']
+
 
 class ProjectTag(models.Model):
     name = models.CharField(max_length=200)

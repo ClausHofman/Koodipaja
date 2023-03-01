@@ -1,3 +1,4 @@
+from datetime import date
 from django.contrib import admin
 from .models import (Project, ProjectPage, ProjectArticle, ProjectTag, ProjectPageTag, ProjectArticleTag,
                      ProjectTodo, ProjectTodoTag)
@@ -14,8 +15,8 @@ admin.site.register(ProjectArticleTag)
 
 @admin.register(ProjectArticle)
 class ProjectArticleAdmin(admin.ModelAdmin):
-    list_display = ["created", "title"]
+    list_display = ["created", "project_page", "title"]
     search_fields = ['body']
 
     class Meta:
-        list_filter = ['-created']
+        list_filter = ["-created"]

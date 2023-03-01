@@ -20,20 +20,22 @@
     <tr>
         <th>
         <td>
-            {{article.body|linebreaksbr}}
+            <pre>{{article.body|linebreaksbr}}</pre>
         </td>
         </th>
     </tr>
-    {% else %}
+</table>
+{% else %}
+<table>
     <tr>
         <th>
         <td>
-            {{article.body|linebreaksbr}}
+            <pre>{{article.body|linebreaksbr}}</pre>
         </td>
         </th>
     </tr>
-    {% endif %}
 </table>
+{% endif %}
 
 {% endfor %}
 
