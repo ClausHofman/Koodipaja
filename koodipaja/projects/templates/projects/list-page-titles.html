@@ -4,38 +4,21 @@
 
 <a href="{% url 'projects:list-project-pages' object2.id %}">Go Back</a>
 <div>
-    <a href="{% url 'projects:create-article' object.id %}?next={{request.path}}">Create new article</a>
+    <a href="{% url 'projects:create-project-page-title' object.id %}?next={{request.path}}">Create new title</a>
 </div>
 <hr>
 
-{% for article in articles %}
+{% for title in page_titles %}
 <table>
     <tr>
         <th></th>
         <td>
-            {% if article.title %}
-            <h5>{{article.title}}</h5>
+            <a href="{% url 'projects:list-page-articles' title.id %}">
+                <h5>{{title.title}}</h5>
+            </a>
         </td>
-    </tr>
-    <tr>
-        <th>
-        <td>
-            <pre>{{article.body|linebreaksbr}}</pre>
-        </td>
-        </th>
     </tr>
 </table>
-{% else %}
-<table>
-    <tr>
-        <th>
-        <td>
-            <pre>{{article.body|linebreaksbr}}</pre>
-        </td>
-        </th>
-    </tr>
-</table>
-{% endif %}
 
 {% endfor %}
 

@@ -13,6 +13,8 @@ urlpatterns = [
          views.createProjectPage, name="create-project-page"),
     path('list-page-titles/<str:pk>/',
          views.viewProjectPage, name='list-page-titles'),
+    path('list-page-articles/<str:pk>/',
+         views.viewPageTitle, name='list-page-articles'),
     path('create-project-article/<str:pk>/',
          views.createProjectArticle, name='create-article'),
     path('create-project-page-tag/<str:pk>/',

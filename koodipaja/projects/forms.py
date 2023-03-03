@@ -47,11 +47,13 @@ class ProjectPageTagForm(ModelForm):
 class ProjectArticleForm(ModelForm):
     class Meta:
         model = ProjectArticle
-        fields = ['owner', 'project', 'project_page', 'title', 'body', 'tags']
+        fields = ['owner', 'project', 'project_page',
+                  'article_title', 'title', 'body', 'tags']
         widgets = {
             'owner': forms.Select(),
             'project': forms.Select(),
             'project_page': forms.Select(),
+            'article_title': forms.Select(),
             'body': forms.Textarea(),
         }
 

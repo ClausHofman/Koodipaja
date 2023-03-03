@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from users.models import Profile
-from .models import Project, ProjectPage, ProjectArticle
+from .models import Project, ProjectPage, ProjectPageTitle
 from .forms import (ProjectForm, ProjectTagForm, ProjectPageForm, ProjectArticleForm,
                     ProjectPageTagForm, ProjectPageTitleForm)
 
@@ -33,17 +33,18 @@ def viewProjectPage(request, pk):
     context['object'] = ProjectPage.objects.get(id=pk)
     context['object2'] = Project.objects.get(projectpage__id=pk)
 
-    return render(request, 'projects/testaus.html', context)
+    return render(request, 'projects/list-page-titles.html', context)
 
-# def viewProjectPage(request, pk):
-#     profile = request.user.profile
-#     articles = profile.projectarticle_set.filter(project_page__id=pk)
 
-#     context = {'articles':articles}
-#     context['object'] = ProjectPage.objects.get(id=pk)
-#     context['object2'] = Project.objects.get(projectpage__id=pk)
+def viewPageTitle(request, pk):
+    profile = request.user.profile
+    articles = profile.projectarticle_set.filter(article_title__id=pk)
 
-#     return render(request, 'projects/list-page-titles.html', context)
+    context = {'articles': articles}
+    context['object'] = ProjectPageTitle.objects.get(id=pk)
+    context['object2'] = ProjectPage.objects.get(projectpagetitle__id=pk)
+
+    return render(request, 'projects/list-articles.html', context)
 
 # FORMS
 
@@ -119,18 +120,20 @@ def createProjectPageTitle(request, pk):
 
 def createProjectArticle(request, pk):
     profile = request.user.profile
-    project = Project.objects.get(projectpage__id=pk)
-    page = ProjectPage.objects.get(id=pk)
+    project = Project.objects.get(projectpagetitle__id=pk)
+    page = ProjectPage.objects.get(projectpagetitle__id=pk)
+    page_title = ProjectPageTitle.objects.get(id=pk)
 
     form = ProjectArticleForm(
-        initial={'owner': profile, 'project': project, 'project_page': page})
+        initial={'owner': profile, 'project': project, 'project_page': page,
+                 'article_title': page_title})
 
     if request.method == 'POST':
         form = ProjectArticleForm(request.POST)
         if form.is_valid():
             form.save()
 
-            return redirect('projects:list-page-titles', pk)
+            return redirect('projects:list-page-articles', pk)
 
     context = {'form': form}
     # context['object'] = ProjectPage.objects.get(id=pk)
