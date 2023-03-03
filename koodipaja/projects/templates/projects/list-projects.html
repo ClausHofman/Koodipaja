@@ -3,22 +3,23 @@
 {% block content %}
 
 <div>
-    <a href="{% url 'projects:create-project' %}?next={{request.path}}">New Project -&nbsp;</a><a href="{% url 'projects:create-project-tag' %}?next={{request.path}}">New Project Tag</a>
+    <a href="{% url 'projects:create-project' %}?next={{request.path}}">New Project -&nbsp;</a><a
+        href="{% url 'projects:create-project-tag' %}?next={{request.path}}">New Project Tag</a>
 </div>
-    <hr>
+<hr>
 
 {% for xx in project %}
 <table>
-<tr>
-    <th></th>
-    <td>
-        <a href="{% url 'projects:view-single-project' xx.id %}">{{xx.title}}</a>
-    </td>
-</tr>
-<tr>
-    <th></th>
-    <td></td>
-</tr>
+    <tr>
+        <th></th>
+        <td>
+            <a href="{% url 'projects:list-project-pages' xx.id %}">{{xx.title}}</a>
+        </td>
+    </tr>
+    <tr>
+        <th></th>
+        <td></td>
+    </tr>
 </table>
 {% endfor %}
 

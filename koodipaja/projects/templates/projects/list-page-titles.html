@@ -1,0 +1,25 @@
+{% extends "main.html" %}
+
+{% block content %}
+
+<a href="{% url 'projects:list-project-pages' object2.id %}">Go Back</a>
+<div>
+    <a href="{% url 'projects:create-project-page-title' object.id %}?next={{request.path}}">Create new title</a>
+</div>
+<hr>
+
+{% for title in page_titles %}
+<table>
+    <tr>
+        <th></th>
+        <td>
+            <a href="{% url 'projects:list-page-articles' title.id %}">
+                <h5>{{title.title}}</h5>
+            </a>
+        </td>
+    </tr>
+</table>
+
+{% endfor %}
+
+{% endblock content %}
