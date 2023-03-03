@@ -106,11 +106,11 @@ def createProjectPageTitle(request, pk):
                                          'project_page': project_page})
 
     if request.method == 'POST':
-        form = ProjectPageForm(request.POST)
+        form = ProjectPageTitleForm(request.POST)
         if form.is_valid():
             form.save()
 
-            return redirect('projects:list-project-pages', pk)
+            return redirect('projects:list-page-titles', pk)
 
     context = {'form': form}
     context['object'] = ProjectPage.objects.get(id=pk)
