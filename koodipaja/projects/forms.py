@@ -1,7 +1,8 @@
 from django import forms
 from django.forms import ModelForm
 # from django import forms
-from .models import Project, ProjectTag, ProjectPage, ProjectPageTag, ProjectArticle, ProjectArticleTag
+from .models import (Project, ProjectTag, ProjectPage, ProjectPageTag, ProjectArticle,
+                     ProjectArticleTag, ProjectPageTitle)
 
 
 class ProjectForm(ModelForm):
@@ -23,6 +24,17 @@ class ProjectPageForm(ModelForm):
         widgets = {
             'owner': forms.Select(),
             'project': forms.Select(),
+        }
+
+
+class ProjectPageTitleForm(ModelForm):
+    class Meta:
+        model = ProjectPageTitle
+        fields = ['owner', 'project', 'project_page', 'title']
+        widgets = {
+            'owner': forms.Select(),
+            'project': forms.Select(),
+            'project_page': forms.Select(),
         }
 
 

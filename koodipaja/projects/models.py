@@ -46,11 +46,27 @@ class ProjectPage(models.Model):
         return self.title
 
 
+class ProjectPageTitle(models.Model):
+    owner = models.ForeignKey(
+        Profile, null=True, blank=True, on_delete=models.SET_NULL)
+    project = models.ForeignKey(Project, on_delete=models.SET_NULL, null=True)
+    project_page = models.ForeignKey(
+        ProjectPage, on_delete=models.CASCADE, null=True)
+    title = models.CharField(max_length=200)
+    created = models.DateTimeField(auto_now_add=True)
+    id = models.AutoField(primary_key=True, editable=False)
+
+    def __str__(self):
+        return self.title
+
+
 class ProjectArticle(models.Model):
     owner = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True)
     project = models.ForeignKey(Project, on_delete=models.SET_NULL, null=True)
     project_page = models.ForeignKey(
         ProjectPage, on_delete=models.SET_NULL, null=True)
+    article_title = models.ForeignKey(
+        ProjectPageTitle, on_delete=models.CASCADE, null=True)
     title = models.CharField(max_length=200, null=True, blank=True)
     body = models.TextField(null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
@@ -59,6 +75,7 @@ class ProjectArticle(models.Model):
                           primary_key=True, editable=False)
 
     def __str__(self):
+        # '' if there is no title
         return self.title or ''
 
     class Meta:

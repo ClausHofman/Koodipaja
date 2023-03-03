@@ -4,24 +4,28 @@
 <main>
     <div>
         <div>
-            <a class="backButton" href="{% url 'projects:view-single-project' object.id %}">Go Back</a>
+            <a class="backButton" href="{% url 'projects:list-project-pages' object.id %}">Go Back</a>
             <hr>
 
-            <form class="form" action=""  method="POST" enctype="multipart/form-data">
+            <form class="form" action="" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
 
                 {% for field in form %}
                 <table>
                     <tr>
                         <th>
-                            <td>
-                                <label>{{field.label}}</label>
-                            </td>
+                        <td>
+                            <label>{{field.label}}</label>
+                        </td>
                         </th>
                     </tr>
-                    <tr><th><td>
-                        {{field}}
-                    </td></th></tr>
+                    <tr>
+                        <th>
+                        <td>
+                            {{field}}
+                        </td>
+                        </th>
+                    </tr>
                 </table>
                 {% endfor %}
 

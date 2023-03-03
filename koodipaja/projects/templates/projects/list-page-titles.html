@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<a href="{% url 'projects:view-single-project' object2.id %}">Go Back</a>
+<a href="{% url 'projects:list-project-pages' object2.id %}">Go Back</a>
 <div>
     <a href="{% url 'projects:create-article' object.id %}?next={{request.path}}">Create new article</a>
 </div>
