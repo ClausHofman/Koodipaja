@@ -59,6 +59,11 @@ class ProjectPageTitle(models.Model):
     def __str__(self):
         return self.title
 
+    class Meta:
+        # sort by "the date" in descending order unless
+        # overridden in the query with order_by()
+        ordering = ['-created']
+
 
 class ProjectArticle(models.Model):
     owner = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True)
@@ -67,7 +72,7 @@ class ProjectArticle(models.Model):
         ProjectPage, on_delete=models.SET_NULL, null=True)
     article_title = models.ForeignKey(
         ProjectPageTitle, on_delete=models.CASCADE, null=True)
-    title = models.CharField(max_length=200, null=True, blank=True)
+    title = models.CharField(max_length=200)
     body = models.TextField(null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     tags = models.ManyToManyField('ProjectArticleTag', blank=True)

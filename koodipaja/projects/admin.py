@@ -5,11 +5,11 @@ from .models import (Project, ProjectPage, ProjectArticle, ProjectTag, ProjectPa
 
 # Register your models here.
 admin.site.register(Project)
-admin.site.register(ProjectTodo)
+# admin.site.register(ProjectTodo)
 admin.site.register(ProjectTag)
-admin.site.register(ProjectTodoTag)
+# admin.site.register(ProjectTodoTag)
 admin.site.register(ProjectPageTag)
-admin.site.register(ProjectPageTitle)
+# admin.site.register(ProjectPageTitle)
 admin.site.register(ProjectArticleTag)
 
 
@@ -22,6 +22,13 @@ class ProjectPageAdmin(admin.ModelAdmin):
 
 @admin.register(ProjectArticle)
 class ProjectArticleAdmin(admin.ModelAdmin):
-    list_display = ["title", "project_page", "project", "created"]
+    list_display = ["title", "project_page", "created"]
     list_filter = ["project", "created", "project_page"]
+    search_fields = ['body', 'title']
+
+
+@admin.register(ProjectPageTitle)
+class ProjectPageTitleAdmin(admin.ModelAdmin):
+    list_display = ["title", "project", "created"]
+    # list_filter = ["project", "created", "project_page"]
     search_fields = ['body', 'title']
