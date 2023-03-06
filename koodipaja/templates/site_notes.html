@@ -37,7 +37,7 @@
           </div>
           <a class="nav-link" href="{% url 'projects:list-projects' %}">Projects</a>
           <a class="nav-link" href="{% url 'tktutkija:kysely1' %}">Tutkija</a>
-          <a class="nav-link" href="{% url 'testing:testing' %}">Testing</a>
+          <a class="nav-link" href="{% url 'testaus:testing' %}">Testing</a>
 
         </div>
       </div>
@@ -65,7 +65,8 @@
   <p>Create a login page. Most pages require the user to be logged in. (creating a superuser and profile works)</p>
   <p>Try making a signal that automatically creates a profile when creating a new user.</p>
   <p>Implement searching.</p>
-  <p>Improvement of this page, at the moment it's hardcoded: change that. I'll probably do that in the postgres-development branch since that'll probably contain real data,  using sqlite database for development.</p>
+  <p>Improvement of this page, at the moment it's hardcoded: change that. I'll probably do that in the
+    postgres-development branch since that'll probably contain real data, using sqlite database for development.</p>
   <br>
   <strong>And probably a lot more to come!</strong>
   {% block content %}

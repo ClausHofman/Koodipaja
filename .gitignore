@@ -131,4 +131,5 @@ dmypy.json
 jotain_ihme_vahinkoja.txt
 db_backups
 my_notes.txt
-harjoitus_appeja
+/harjoitus_appeja/
+harjoitus_appeja/harjoitus_appeja/urls.py

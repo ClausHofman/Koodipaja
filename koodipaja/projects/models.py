@@ -36,7 +36,7 @@ class ProjectPage(models.Model):
         Profile, null=True, blank=True, on_delete=models.SET_NULL)
     project = models.ForeignKey(Project, on_delete=models.SET_NULL, null=True)
     title = models.CharField(max_length=500)
-    page_number = models.IntegerField()
+    page_number = models.IntegerField(null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     tags = models.ManyToManyField('ProjectPageTag', blank=True)
     id = models.UUIDField(default=uuid.uuid4, unique=True,

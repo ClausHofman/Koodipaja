@@ -14,8 +14,7 @@
     <tr>
         <th></th>
         <td>
-            <a href="{% url 'projects:list-page-titles' page.id %}?next={{request.path}}">{{page.title}}
-                ({{page.page_number}})</a>
+            <a href="{% url 'projects:list-page-titles' page.id %}?next={{request.path}}">{{page.title}}</a>
         </td>
     </tr>
 </table>
