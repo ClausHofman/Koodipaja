@@ -13,12 +13,29 @@
     <tr>
         <th></th>
         <td>
-            <a href="{% url 'projects:view-article-title' article.id %}">
-                <h6>{{article.title}}</h6>
-            </a>
+            {% if article.title %}
+            <h5>{{article.title}}</h5>
         </td>
     </tr>
+    <tr>
+        <th>
+        <td>
+            <pre>{{article.body|linebreaksbr}}</pre>
+        </td>
+        </th>
+    </tr>
 </table>
+{% else %}
+<table>
+    <tr>
+        <th>
+        <td>
+            <pre>{{article.body|linebreaksbr}}</pre>
+        </td>
+        </th>
+    </tr>
+</table>
+{% endif %}
 
 {% endfor %}
 

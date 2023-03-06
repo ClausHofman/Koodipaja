@@ -21,4 +21,6 @@ urlpatterns = [
          views.createProjectPageTag, name="create-project-page-tag"),
     path('create-project-page-title/<str:pk>/',
          views.createProjectPageTitle, name='create-project-page-title'),
+    path('view-article-title/<str:pk>/',
+         views.viewArticleTitle, name='view-article-title'),
 ]

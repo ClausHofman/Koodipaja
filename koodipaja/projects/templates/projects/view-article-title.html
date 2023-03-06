@@ -1,0 +1,15 @@
+{% extends "main.html" %}
+
+{% block content %}
+
+<a href="{% url 'projects:list-page-articles' object2.id %}">Go Back</a>
+
+<hr>
+
+
+<h6>{{article_title.title}}</h6>
+<br>
+<pre>{{article_title.body}}</pre>
+
+
+{% endblock content %}

@@ -46,6 +46,17 @@ def viewPageTitle(request, pk):
 
     return render(request, 'projects/list-articles.html', context)
 
+
+def viewArticleTitle(request, pk):
+    profile = request.user.profile
+    article_title = profile.projectarticle_set.get(id=pk)
+
+    context = {'article_title': article_title}
+    context['object2'] = ProjectPageTitle.objects.get(projectarticle__id=pk)
+
+    return render(request, 'projects/view-article-title.html', context)
+
+
 # FORMS
 
 
