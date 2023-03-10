@@ -22,7 +22,7 @@ class ProjectPageAdmin(admin.ModelAdmin):
 
 @admin.register(ProjectArticle)
 class ProjectArticleAdmin(admin.ModelAdmin):
-    list_display = ["title", "project_page", "created"]
+    list_display = ["title", "created", "project_page"]
 
     # Option to filter articles in the django admin panel
     list_filter = ["project", "created", "project_page"]
@@ -39,6 +39,6 @@ class ProjectArticleAdmin(admin.ModelAdmin):
 
 @admin.register(ProjectPageTitle)
 class ProjectPageTitleAdmin(admin.ModelAdmin):
-    list_display = ["title", "project", "created"]
+    list_display = ["title", "created", "project"]
     list_filter = ["project"]
     search_fields = ['body', 'title']

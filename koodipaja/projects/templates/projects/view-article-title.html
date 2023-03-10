@@ -2,14 +2,14 @@
 
 {% block content %}
 
-<a href="{% url 'projects:list-page-articles' object2.id %}">Go Back</a>
+<a style="font-size: x-large;" href="{% url 'projects:list-page-articles' object2.id %}">Go Back</a>
 
 <hr>
 
 
-<h6>{{article_title.title}}</h6>
+<h4>{{article_title.title}}</h4>
 <br>
-<pre>{{article_title.body}}</pre>
+<pre style="font-size: x-large;">{{article_title.body}}</pre>
 
 
 {% endblock content %}
