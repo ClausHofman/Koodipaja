@@ -54,7 +54,7 @@ class ProjectArticleForm(ModelForm):
             'project': forms.Select(),
             'project_page': forms.Select(),
             'article_title': forms.Select(),
-            'body': forms.Textarea(),
+            'body': forms.Textarea(attrs={'rows': 50, 'cols': 150}),
         }
 
 
