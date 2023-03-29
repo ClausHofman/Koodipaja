@@ -72,7 +72,7 @@ class ProjectArticle(models.Model):
         ProjectPage, on_delete=models.SET_NULL, null=True)
     article_title = models.ForeignKey(
         ProjectPageTitle, on_delete=models.CASCADE, null=True)
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=300)
     body = models.TextField(null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     tags = models.ManyToManyField('ProjectArticleTag', blank=True)
