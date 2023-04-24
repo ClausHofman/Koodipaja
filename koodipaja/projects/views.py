@@ -3,7 +3,7 @@ from users.models import Profile
 from .models import Project, ProjectPage, ProjectPageTitle
 from .forms import (ProjectForm, ProjectTagForm, ProjectPageForm, ProjectArticleForm,
                     ProjectPageTagForm, ProjectPageTitleForm)
-from .utils import searchProjects, paginateProjects
+from .utils import searchProjects, paginateProjects, searchArticles
 
 
 def haku(request):
@@ -20,6 +20,22 @@ def haku(request):
 
     # pprint(context)
     return render(request, 'projects/haku.html', context)
+
+
+def haku2(request):
+
+    # need to get the return values
+    articles, search_query = searchArticles(request)
+
+    custom_range, articles = paginateProjects(request, articles, 6)
+
+    # removed 'paginator':paginator from context because using the custom range
+    context = {
+        'articles': articles, 'search_query': search_query, 'custom_range': custom_range
+    }
+
+    # pprint(context)
+    return render(request, 'projects/haku2.html', context)
 
 
 def listProjects(request):

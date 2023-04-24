@@ -1,5 +1,5 @@
 from pprint import pprint
-from .models import Project, ProjectTag
+from .models import Project, ProjectTag, ProjectArticle, ProjectArticleTag
 from django.db.models import Q
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
@@ -66,3 +66,27 @@ def searchProjects(request):
     )
 
     return projects, search_query
+
+
+def searchArticles(request):
+
+    search_query = ''
+
+    # "search_query" is in projects.html in this case
+    if request.GET.get('search_query'):
+        search_query = request.GET.get('search_query')
+        print('SEARCH:', search_query)
+
+    tags = ProjectArticleTag.objects.filter(name__icontains=search_query)
+
+    articles = ProjectArticle.objects.distinct().filter(  # distinct() to avoid duplicate search results!
+        Q(title__icontains=search_query) |
+        # Q(description__icontains=search_query) |
+        Q(body__icontains=search_query) |
+        Q(owner__name__icontains=search_query) |
+        # does the Project tags queryset contain the tags that are input in the search_query (the filter)
+        Q(tags__in=tags)
+        # we could add another value that says a user has to exist
+    )
+
+    return articles, search_query

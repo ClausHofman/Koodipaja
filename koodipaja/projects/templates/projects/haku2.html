@@ -13,7 +13,7 @@
             <div>
                 <form id="searchForm" class="form" action="" method="get">
                     <div class="form__field">
-                        <label for="formInput#search">Search By Projects </label>
+                        <label for="formInput#search">Search By Articles </label>
                         <input class="input input--text" id="formInput#search" type="text" name="search_query"
                             placeholder="Search by Project Title" value="{{search_query}}" />
                     </div>
@@ -25,9 +25,9 @@
         </div>
     </section>
     <!-- Search Results: -->
-    {% for project in projects %}
-    <a href="{% url 'projects:list-project-pages' project.id %}">
-        <p>{{project.title}}</p>
+    {% for article in articles %}
+    <a href="{% url 'projects:view-article-title' article.id %}">
+        <p>{{article.title}}</p>
     </a>
     {% endfor %}
 
