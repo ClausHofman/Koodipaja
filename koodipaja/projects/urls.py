@@ -23,4 +23,5 @@ urlpatterns = [
          views.createProjectPageTitle, name='create-project-page-title'),
     path('view-article-title/<str:pk>/',
          views.viewArticleTitle, name='view-article-title'),
+    path('haku/', views.haku, name='haku')
 ]
