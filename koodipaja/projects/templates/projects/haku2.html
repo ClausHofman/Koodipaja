@@ -31,7 +31,9 @@
     </a>
     {% endfor %}
 
-    {% include "pagination.html" with queryset=projects custom_range=custom_range %}
+    <br>
+
+    {% include "pagination.html" with queryset=articles custom_range=custom_range %}
 
 </main>
 
