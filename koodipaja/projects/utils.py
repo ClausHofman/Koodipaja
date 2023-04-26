@@ -1,5 +1,5 @@
 from pprint import pprint
-from .models import Project, ProjectTag, ProjectArticle, ProjectArticleTag
+from .models import Project, ProjectTag, ProjectArticle, ProjectPageTitle, ProjectArticleTag
 from django.db.models import Q
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
@@ -68,7 +68,7 @@ def searchProjects(request):
     return projects, search_query
 
 
-def searchArticles(request):
+def utils_search_articles(request):
 
     search_query = ''
 
@@ -80,6 +80,7 @@ def searchArticles(request):
     tags = ProjectArticleTag.objects.filter(name__icontains=search_query)
 
     articles = ProjectArticle.objects.distinct().filter(  # distinct() to avoid duplicate search results!
+
         Q(title__icontains=search_query) |
         # Q(description__icontains=search_query) |
         Q(body__icontains=search_query) |
@@ -90,3 +91,23 @@ def searchArticles(request):
     )
 
     return articles, search_query
+
+
+def utils_search_titles(request):
+
+    search_query = ''
+
+    if request.GET.get('search_query'):
+        search_query = request.GET.get('search_query')
+
+    titles = ProjectPageTitle.objects.distinct().filter(
+        Q(title__icontains=search_query) |
+        Q(projectarticle__title__icontains=search_query) |
+        Q(projectarticle__body__icontains=search_query)
+    )
+    return titles, search_query
+
+
+# ProjectArticle.objects.filter(
+#     desc__contains=filter,
+#     project__name__contains="Foo").order_by("desc")

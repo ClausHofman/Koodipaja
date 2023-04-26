@@ -7,33 +7,29 @@
     <section>
         <div>
             <div>
-                <h2>Search for <span>Stuff</span></h2>
+                <p style="font-size: 30px; padding-top: 10px;">Search for article titles:</p>
             </div>
-
             <div>
                 <form id="searchForm" class="form" action="" method="get">
                     <div class="form__field">
-                        <label for="formInput#search">Search By Articles </label>
-                        <input class="input input--text" id="formInput#search" type="text" name="search_query"
-                            placeholder="Search by Project Title" value="{{search_query}}" />
+                        <input style="width: 300px;" class="input input--text" id="formInput#search" type="text"
+                            name="search_query" placeholder="Search..." value="{{search_query}}" />
                     </div>
-
-                    <!-- <input class="btn btn--sub btn--lg" type="submit" value="Search" /> -->
+                    <hr>
                 </form>
-                <br>
             </div>
         </div>
     </section>
     <!-- Search Results: -->
     {% for article in articles %}
     <a href="{% url 'projects:view-article-title' article.id %}">
-        <p>{{article.title}}</p>
+        <p style="font-size: 30px;">{{article.title}}</p>
     </a>
     {% endfor %}
 
     <br>
 
-    {% include "pagination.html" with queryset=articles custom_range=custom_range %}
+    {% include "pagination.html" with queryset=projects custom_range=custom_range %}
 
 </main>
 

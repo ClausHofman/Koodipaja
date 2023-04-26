@@ -39,6 +39,10 @@
           <button class="dropbtn">Search</button>
           <i class="fa fa-caret-down"></i>
           <div class="dropdown-content">
+            <div style="overflow: hidden; white-space: nowrap;"><a href="{% url 'projects:search-page-titles' %}">Page
+                Titles</a></div>
+            <div style="overflow: hidden; white-space: nowrap;"><a
+                href="{% url 'projects:search-article-titles' %}">Article Titles</a></div>
             <!-- <a href="{% url 'languages:list-languages' %}">Languages</a> -->
             <!-- <a href="{% url 'frameworks:framework-list' %}">Frameworks</a> -->
           </div>

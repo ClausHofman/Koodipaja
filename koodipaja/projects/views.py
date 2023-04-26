@@ -3,29 +3,13 @@ from users.models import Profile
 from .models import Project, ProjectPage, ProjectPageTitle
 from .forms import (ProjectForm, ProjectTagForm, ProjectPageForm, ProjectArticleForm,
                     ProjectPageTagForm, ProjectPageTitleForm)
-from .utils import searchProjects, paginateProjects, searchArticles
+from .utils import searchProjects, paginateProjects, utils_search_articles, utils_search_titles
 
 
-def haku(request):
-
-    # need to get the return values
-    projects, search_query = searchProjects(request)
-
-    custom_range, projects = paginateProjects(request, projects, 6)
-
-    # removed 'paginator':paginator from context because using the custom range
-    context = {
-        'projects': projects, 'search_query': search_query, 'custom_range': custom_range
-    }
-
-    # pprint(context)
-    return render(request, 'projects/haku.html', context)
-
-
-def haku2(request):
+def search_articles(request):
 
     # need to get the return values
-    articles, search_query = searchArticles(request)
+    articles, search_query = utils_search_articles(request)
 
     custom_range, articles = paginateProjects(request, articles, 6)
 
@@ -35,7 +19,23 @@ def haku2(request):
     }
 
     # pprint(context)
-    return render(request, 'projects/haku2.html', context)
+    return render(request, 'projects/search_article_titles.html', context)
+
+
+def search_titles(request):
+
+    # need to get the return values
+    titles, search_query = utils_search_titles(request)
+
+    custom_range, titles = paginateProjects(request, titles, 6)
+
+    # removed 'paginator':paginator from context because using the custom range
+    context = {
+        'titles': titles, 'search_query': search_query, 'custom_range': custom_range
+    }
+
+    # pprint(context)
+    return render(request, 'projects/search_page_titles.html', context)
 
 
 def listProjects(request):
