@@ -26,53 +26,57 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-link" href="{% url 'kotisivu:kotisivu' %}">Home</a>
-          <div class="dropdown">
-            <button class="dropbtn">Topics</button>
-            <i class="fa fa-caret-down"></i>
-            <div class="dropdown-content">
-              <a href="{% url 'languages:list-languages' %}">Languages</a>
-              <a href="{% url 'frameworks:framework-list' %}">Frameworks</a>
-            </div>
+          <a style="padding-left: 5px; padding-right: 5px;" class="nav-link"
+            href="{% url 'kotisivu:kotisivu' %}">Home</a>
+          <a class="nav-link" href="">-</a>
+          <a style="padding-left: 5px; padding-right: 5px;" class="nav-link"
+            href="{% url 'projects:list-projects' %}">Projects</a>
+          <a class="nav-link" href="">-</a>
+        </div>
+        <!-- <a class="nav-link" href="{% url 'tktutkija:kysely1' %}">Tutkija</a> -->
+        <!-- <a class="nav-link" href="{% url 'testaus:testing' %}">Testing</a> -->
+        <div class="dropdown">
+          <button class="dropbtn">Search</button>
+          <i class="fa fa-caret-down"></i>
+          <div class="dropdown-content">
+            <!-- <a href="{% url 'languages:list-languages' %}">Languages</a> -->
+            <!-- <a href="{% url 'frameworks:framework-list' %}">Frameworks</a> -->
           </div>
-          <a class="nav-link" href="{% url 'projects:list-projects' %}">Projects</a>
-          <a class="nav-link" href="{% url 'tktutkija:kysely1' %}">Tutkija</a>
-          <a class="nav-link" href="{% url 'testing:testing' %}">Testing</a>
-
         </div>
       </div>
     </div>
   </nav>
 
   <br>
-  <h3>Welcome to site_notes.html!</h3>
+  <h2>Welcome to site_notes.html!</h2>
   <hr>
-  <h5>Here's some notes about what's been going on in the site's development:</h5>
-  <br>
-  <p>The example links in Topics -> Languages, are now working correctly!</p>
-  <p>Click on Tutkija in the navigation bar to see some database queries.</p>
-  <p>Added a form to create a new example (go to Languages and select a language first)</p>
-  <p>Added a 'Go Back' link to ease navigation.</p>
-  <p>User can create projects, project pages and articles to those pages now (currently only from the admin panel).</p>
-  <p>Can now create projects, project tags and project pages with a form.</p>
-  <p>Added some initial values to the project page creation form.</p>
+  <h3 style="padding-bottom: 10px;">Here's some info about what's been going on in the site's development:
+  </h3>
+  <p style="font-size: 20px;"> Added a 'Go Back' link to ease navigation.</p>
+  <p style="font-size: 20px;"> User can create projects, project pages and articles to those pages now.</p>
+  <p style="font-size: 20px;"> Can now create projects etc with the help of forms.</p>
+  <p style="font-size: 20px;"> Added some initial values to most forms.</p>
+  <p style="font-size: 20px;"> Searching capability in development.</p>
   <hr>
-  <h5 style="padding-bottom: 10px;">Development goals and ideas:</h5>
-  <p>Delete and update forms for examples.</p>
-  <p>Also need forms for frameworks app</p>
-  <p>Projects app: ProjectArticleTag form, update and delete forms.</p>
-  <p>Ability to add comments or such to an example page might be useful.</p>
-  <p>Create a login page. Most pages require the user to be logged in. (creating a superuser and profile works)</p>
-  <p>Try making a signal that automatically creates a profile when creating a new user.</p>
-  <p>Implement searching.</p>
-  <p>Improvement of this page, at the moment it's hardcoded: change that. I'll probably do that in the postgres-development branch since that'll probably contain real data,  using sqlite database for development.</p>
-  <br>
-  <strong>And probably a lot more to come!</strong>
+  <h3 style="padding-bottom: 10px;">Development goals and ideas:</h3>
+  <strong style="font-size: 20px;">Working on currently: </strong><span style="font-size: 20px;">&nbsp;Implement
+    searching.</span><br><br>
+  <p style="font-size: 20px;"> Delete and update forms, still need to do that in the admin panel.</p>
+  <p style="font-size: 20px;"> Projects app: ProjectArticleTag form, update and delete forms.</p>
+  <p style="font-size: 20px;"> Ability to add/edit/remove comments or such to a page might be useful. Need to think
+    about
+    it.</p>
+  <p style="font-size: 20px;"> Create a login page. Most pages require the user to be logged in. (creating a superuser
+    and profile works)</p>
+  <p style="font-size: 20px;"> Try making a signal that automatically creates a profile when creating a new user.</p>
+  <p style="font-size: 20px;"> Improvement of this page, at the moment it's hardcoded. Is not a priority but might be
+    nice.</p>
   {% block content %}
   {% endblock content %}
 
   <br>
-  <!-- <p>FOOTER</p> -->
+  <!-- <p style="font-size: 20px;">FOOTER</p> -->
 </body>
+<script src="{% static 'js/main.js' %}"></script>
 
 </html>

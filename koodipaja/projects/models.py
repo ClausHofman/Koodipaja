@@ -36,7 +36,7 @@ class ProjectPage(models.Model):
         Profile, null=True, blank=True, on_delete=models.SET_NULL)
     project = models.ForeignKey(Project, on_delete=models.SET_NULL, null=True)
     title = models.CharField(max_length=500)
-    page_number = models.IntegerField()
+    page_number = models.IntegerField(null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     tags = models.ManyToManyField('ProjectPageTag', blank=True)
     id = models.UUIDField(default=uuid.uuid4, unique=True,
@@ -62,7 +62,7 @@ class ProjectPageTitle(models.Model):
     class Meta:
         # sort by "the date" in descending order unless
         # overridden in the query with order_by()
-        ordering = ['-created']
+        ordering = ['created']
 
 
 class ProjectArticle(models.Model):
@@ -72,7 +72,7 @@ class ProjectArticle(models.Model):
         ProjectPage, on_delete=models.SET_NULL, null=True)
     article_title = models.ForeignKey(
         ProjectPageTitle, on_delete=models.CASCADE, null=True)
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=300)
     body = models.TextField(null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     tags = models.ManyToManyField('ProjectArticleTag', blank=True)

@@ -1,0 +1,37 @@
+{% extends 'main.html' %}
+{% block content %}
+
+
+<!-- Main Section -->
+<main>
+    <section>
+        <div>
+            <div>
+                <p style="font-size: 30px; padding-top: 10px;">Search for article titles:</p>
+            </div>
+            <div>
+                <form id="searchForm" class="form" action="" method="get">
+                    <div class="form__field">
+                        <input style="width: 300px;" class="input input--text" id="formInput#search" type="text"
+                            name="search_query" placeholder="Search..." value="{{search_query}}" />
+                    </div>
+                    <hr>
+                </form>
+            </div>
+        </div>
+    </section>
+    <!-- Search Results: -->
+    {% for article in articles %}
+    <a href="{% url 'projects:view-article-title' article.id %}">
+        <p style="font-size: 30px;">{{article.title}}</p>
+    </a>
+    {% endfor %}
+
+    <br>
+
+    {% include "pagination.html" with queryset=articles custom_range=custom_range %}
+
+</main>
+
+
+{% endblock content %}

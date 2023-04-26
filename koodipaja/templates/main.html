@@ -26,19 +26,26 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-link" href="{% url 'kotisivu:kotisivu' %}">Home</a>
-          <div class="dropdown">
-            <button class="dropbtn">Topics</button>
-            <i class="fa fa-caret-down"></i>
-            <div class="dropdown-content">
-              <a href="{% url 'languages:list-languages' %}">Languages</a>
-              <a href="{% url 'frameworks:framework-list' %}">Frameworks</a>
-            </div>
+          <a style="padding-left: 5px; padding-right: 5px;" class="nav-link"
+            href="{% url 'kotisivu:kotisivu' %}">Home</a>
+          <a class="nav-link" href="">-</a>
+          <a style="padding-left: 5px; padding-right: 5px;" class="nav-link"
+            href="{% url 'projects:list-projects' %}">Projects</a>
+          <a class="nav-link" href="">-</a>
+        </div>
+        <!-- <a class="nav-link" href="{% url 'tktutkija:kysely1' %}">Tutkija</a> -->
+        <!-- <a class="nav-link" href="{% url 'testaus:testing' %}">Testing</a> -->
+        <div class="dropdown">
+          <button class="dropbtn">Search</button>
+          <i class="fa fa-caret-down"></i>
+          <div class="dropdown-content">
+            <div style="overflow: hidden; white-space: nowrap;"><a href="{% url 'projects:search-page-titles' %}">Page
+                Titles</a></div>
+            <div style="overflow: hidden; white-space: nowrap;"><a
+                href="{% url 'projects:search-article-titles' %}">Article Titles</a></div>
+            <!-- <a href="{% url 'languages:list-languages' %}">Languages</a> -->
+            <!-- <a href="{% url 'frameworks:framework-list' %}">Frameworks</a> -->
           </div>
-          <a class="nav-link" href="{% url 'projects:list-projects' %}">Projects</a>
-          <a class="nav-link" href="{% url 'tktutkija:kysely1' %}">Tutkija</a>
-          <a class="nav-link" href="{% url 'testing:testing' %}">Testing</a>
-
         </div>
       </div>
     </div>
@@ -55,5 +62,7 @@
   <br>
   <!-- <p>FOOTER</p> -->
 </body>
+<script src="{% static 'js/main.js' %}"></script>
+
 
 </html>

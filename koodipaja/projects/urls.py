@@ -23,4 +23,7 @@ urlpatterns = [
          views.createProjectPageTitle, name='create-project-page-title'),
     path('view-article-title/<str:pk>/',
          views.viewArticleTitle, name='view-article-title'),
+    path('search-page-titles/', views.search_titles, name='search-page-titles'),
+    path('search-article-titles/', views.search_articles,
+         name='search-article-titles'),
 ]

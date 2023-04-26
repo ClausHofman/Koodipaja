@@ -2,9 +2,10 @@
 
 {% block content %}
 
-<a href="{% url 'projects:list-page-titles' object2.id %}">Go Back</a>
+<a style="font-size:x-large;" href="{% url 'projects:list-page-titles' object2.id %}">Go Back</a>
 <div>
-    <a href="{% url 'projects:create-article' object.id %}?next={{request.path}}">Create new article</a>
+    <a style="font-size:x-large;" href="{% url 'projects:create-article' object.id %}?next={{request.path}}">Create new
+        article</a>
 </div>
 <hr>
 
@@ -13,8 +14,8 @@
     <tr>
         <th></th>
         <td>
-            <a href="{% url 'projects:view-article-title' article.id %}">
-                <h6>{{article.title}}</h6>
+            <a style="font-size: x-large;" href="{% url 'projects:view-article-title' article.id %}">
+                {{article.title}}
             </a>
         </td>
     </tr>
