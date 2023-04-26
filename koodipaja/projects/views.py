@@ -11,7 +11,7 @@ def search_articles(request):
     # need to get the return values
     articles, search_query = utils_search_articles(request)
 
-    custom_range, articles = paginateProjects(request, articles, 6)
+    custom_range, articles = paginateProjects(request, articles, 10)
 
     # removed 'paginator':paginator from context because using the custom range
     context = {
@@ -27,7 +27,7 @@ def search_titles(request):
     # need to get the return values
     titles, search_query = utils_search_titles(request)
 
-    custom_range, titles = paginateProjects(request, titles, 6)
+    custom_range, titles = paginateProjects(request, titles, 10)
 
     # removed 'paginator':paginator from context because using the custom range
     context = {
