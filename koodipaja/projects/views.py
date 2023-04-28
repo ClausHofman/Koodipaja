@@ -3,9 +3,12 @@ from users.models import Profile
 from .models import Project, ProjectPage, ProjectPageTitle
 from .forms import (ProjectForm, ProjectTagForm, ProjectPageForm, ProjectArticleForm,
                     ProjectPageTagForm, ProjectPageTitleForm)
+from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from .utils import searchProjects, paginateProjects, utils_search_articles, utils_search_titles
 
 
+@login_required(login_url='users:login')
 def search_articles(request):
 
     # need to get the return values
@@ -22,6 +25,7 @@ def search_articles(request):
     return render(request, 'projects/search_article_titles.html', context)
 
 
+@login_required(login_url='users:login')
 def search_titles(request):
 
     # need to get the return values
@@ -38,14 +42,19 @@ def search_titles(request):
     return render(request, 'projects/search_page_titles.html', context)
 
 
+@login_required(login_url='users:login')
 def listProjects(request):
-    profile = request.user.profile
-    project = profile.project_set.all()
+    if request.user.is_authenticated:
+        profile = request.user.profile
+        project = profile.project_set.all()
+    else:
+        return redirect('users:login')
 
     context = {'project': project}
     return render(request, 'projects/list-projects.html', context)
 
 
+@login_required(login_url='users:login')
 def viewSingleProject(request, pk):
     profile = request.user.profile
     project_pages = profile.projectpage_set.filter(project__id=pk)
@@ -58,6 +67,7 @@ def viewSingleProject(request, pk):
     return render(request, 'projects/list-project-pages.html', context)
 
 
+@login_required(login_url='users:login')
 def viewProjectPage(request, pk):
     profile = request.user.profile
     page_titles = profile.projectpagetitle_set.filter(project_page__id=pk)
@@ -69,6 +79,7 @@ def viewProjectPage(request, pk):
     return render(request, 'projects/list-page-titles.html', context)
 
 
+@login_required(login_url='users:login')
 def viewPageTitle(request, pk):
     profile = request.user.profile
     articles = profile.projectarticle_set.filter(article_title__id=pk)
@@ -80,6 +91,7 @@ def viewPageTitle(request, pk):
     return render(request, 'projects/list-articles.html', context)
 
 
+@login_required(login_url='users:login')
 def viewArticleTitle(request, pk):
     profile = request.user.profile
     article_title = profile.projectarticle_set.get(id=pk)
@@ -92,7 +104,7 @@ def viewArticleTitle(request, pk):
 
 # FORMS
 
-
+@login_required(login_url='users:login')
 def createProject(request):
     form = ProjectForm()
 
@@ -107,6 +119,7 @@ def createProject(request):
     return render(request, "projects/project_form.html", context)
 
 
+@login_required(login_url='users:login')
 def createProjectTag(request):
     form = ProjectTagForm()
 
@@ -121,6 +134,7 @@ def createProjectTag(request):
     return render(request, "projects/projecttag_form.html", context)
 
 
+@login_required(login_url='users:login')
 def createProjectPage(request, pk):
     profile = request.user.profile
     project = Project.objects.get(id=pk)
@@ -143,6 +157,7 @@ def createProjectPage(request, pk):
     return render(request, "projects/projectpage_form.html", context)
 
 
+@login_required(login_url='users:login')
 def createProjectPageTitle(request, pk):
     profile = request.user.profile
     project = Project.objects.get(projectpage__id=pk)
@@ -162,6 +177,7 @@ def createProjectPageTitle(request, pk):
     return render(request, "projects/projectpagetitle_form.html", context)
 
 
+@login_required(login_url='users:login')
 def createProjectArticle(request, pk):
     profile = request.user.profile
     project = Project.objects.get(projectpagetitle__id=pk)
@@ -184,6 +200,7 @@ def createProjectArticle(request, pk):
     return render(request, "projects/projectarticle_form.html", context)
 
 
+@login_required(login_url='users:login')
 def createProjectPageTag(request, pk):
     form = ProjectPageTagForm()
 
