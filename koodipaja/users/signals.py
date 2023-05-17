@@ -6,7 +6,7 @@ from .models import Profile
 
 # imports for email
 from django.core.mail import send_mail
-# from email_passu import app_email
+import os
 
 
 # @receiver(post_save, sender=Profile) # signal with decorator
@@ -19,6 +19,15 @@ def createProfile(sender, instance, created, **kwargs):
             username=user.username,
             email=user.email,
             name=user.first_name
+        )
+
+# comment this out if not using this, or errors at signup
+        send_mail(
+            "Welcome!",
+            "This is a development test email message.",
+            os.getenv("app_email"),
+            [profile.email],
+            fail_silently=False,
         )
 
 

@@ -14,17 +14,17 @@ class CustomUserCreationForm(UserCreationForm):
             'first_name': 'Name'
         }
 
-    def __init__(self, *args, **kwargs):
-        super(CustomUserCreationForm, self).__init__(*args, **kwargs)
+    # def __init__(self, *args, **kwargs):
+    #     super(CustomUserCreationForm, self).__init__(*args, **kwargs)
 
-        # the field(s) we want to modify
-        # self.fields['title'].widget.attrs.update({'class':'input', # CSS class, not Python class.
-        #                                         'placeholder':'Add title'})
-        # self.fields['description'].widget.attrs.update({'class':'input'}) # _form.css line 43 is the class in question
+    #     # the field(s) we want to modify
+    #     # self.fields['title'].widget.attrs.update({'class':'input', # CSS class, not Python class.
+    #     #                                         'placeholder':'Add title'})
+    #     # self.fields['description'].widget.attrs.update({'class':'input'}) # _form.css line 43 is the class in question
 
-        # do it with a for loop
-        for name, field in self.fields.items():
-            field.widget.attrs.update({'class': 'input'})
+    #     # do it with a for loop
+    #     for name, field in self.fields.items():
+    #         field.widget.attrs.update({'class': 'input'})
 
 
 class ProfileForm(ModelForm):
