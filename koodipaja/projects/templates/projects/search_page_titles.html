@@ -22,9 +22,12 @@
     </section>
     <!-- Search Results: -->
     {% for title in titles %}
+    {% if title.owner == profile %}
     <a href="{% url 'projects:list-page-articles' title.id %}">
         <p style="font-size: 30px;">{{title.title}}</p>
     </a>
+    {% else %}
+    {% endif %}
     {% endfor %}
 
     <br>

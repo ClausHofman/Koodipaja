@@ -11,6 +11,8 @@ from .utils import searchProjects, paginateProjects, utils_search_articles, util
 @login_required(login_url='users:login')
 def search_articles(request):
 
+    profile = request.user.profile
+
     # need to get the return values
     articles, search_query = utils_search_articles(request)
 
@@ -18,7 +20,8 @@ def search_articles(request):
 
     # removed 'paginator':paginator from context because using the custom range
     context = {
-        'articles': articles, 'search_query': search_query, 'custom_range': custom_range
+        'articles': articles, 'search_query': search_query, 'custom_range': custom_range,
+        'profile': profile
     }
 
     # pprint(context)
@@ -28,6 +31,8 @@ def search_articles(request):
 @login_required(login_url='users:login')
 def search_titles(request):
 
+    profile = request.user.profile
+
     # need to get the return values
     titles, search_query = utils_search_titles(request)
 
@@ -35,7 +40,8 @@ def search_titles(request):
 
     # removed 'paginator':paginator from context because using the custom range
     context = {
-        'titles': titles, 'search_query': search_query, 'custom_range': custom_range
+        'titles': titles, 'search_query': search_query, 'custom_range': custom_range,
+        'profile': profile
     }
 
     # pprint(context)

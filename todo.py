@@ -4,13 +4,16 @@
 
 # TODO: Ability to update an article etc.
 
-# TODO: Fix the search pages so that you see only your own pages/articles.
-
 # TODO: Profile page?
 
 # TODO: Some kind of note section?
 
 # TODO: some css for login/register pages.
+
+# TODO: Fix the pagination, so it shows only when appropriate. (only if the current
+#       user actually has something to search)
+
+# DONE: Fix the search pages so that you see only your own pages/articles.
 
 # DONE: Environment variables.
 
