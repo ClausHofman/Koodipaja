@@ -1,6 +1,8 @@
-from django.shortcuts import render, redirect
+from django.http import JsonResponse
+from django.urls import reverse
+from django.shortcuts import render, redirect, get_object_or_404
 from users.models import Profile
-from .models import Project, ProjectPage, ProjectPageTitle
+from .models import Project, ProjectPage, ProjectPageTitle, ProjectArticle
 from .forms import (ProjectForm, ProjectTagForm, ProjectPageForm, ProjectArticleForm,
                     ProjectPageTagForm, ProjectPageTitleForm)
 from django.contrib.auth.models import User
@@ -99,10 +101,18 @@ def viewPageTitle(request, pk):
 
 @login_required(login_url='users:login')
 def viewArticleTitle(request, pk):
+    my_object = get_object_or_404(ProjectArticle, pk=pk)
+    if request.method == "POST" and request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+        # Toggle the BooleanField value
+        my_object.favorite = not my_object.favorite
+        my_object.save()
+
+        return JsonResponse({'my_boolean_field': my_object.favorite})
+
     profile = request.user.profile
     article_title = profile.projectarticle_set.get(id=pk)
 
-    context = {'article_title': article_title}
+    context = {'article_title': article_title, 'my_object': my_object}
     context['object2'] = ProjectPageTitle.objects.get(projectarticle__id=pk)
 
     return render(request, 'projects/view-article-title.html', context)

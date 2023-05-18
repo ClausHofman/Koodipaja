@@ -78,6 +78,7 @@ class ProjectArticle(models.Model):
     tags = models.ManyToManyField('ProjectArticleTag', blank=True)
     id = models.UUIDField(default=uuid.uuid4, unique=True,
                           primary_key=True, editable=False)
+    favorite = models.BooleanField(default=False)
 
     def __str__(self):
         # '' if there is no title

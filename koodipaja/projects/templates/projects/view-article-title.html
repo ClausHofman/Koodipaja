@@ -4,12 +4,21 @@
 
 <a style="font-size: x-large;" href="{% url 'projects:list-page-articles' object2.id %}">Go Back</a>
 
+<form method="POST">
+    {% csrf_token %}
+    {% if my_object.favorite %}
+    <button id="toggle-button" data-object-id="{{ my_object.pk }}">Remove from favourites</button>
+    {% else %}
+    <button id="toggle-button" data-object-id="{{ my_object.pk }}">Add to favourites</button>
+    {% endif %}
+</form>
 <hr>
 
 
 <h4>{{article_title.title}}</h4>
 <br>
 <pre style="font-size: x-large;">{{article_title.body}}</pre>
+
 
 
 {% endblock content %}

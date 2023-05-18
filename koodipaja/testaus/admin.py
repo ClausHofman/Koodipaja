@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import (Person, Group, Membership)
+from .models import (Person, Group, Membership, MyModel)
 
 
 class MembershipInline(admin.TabularInline):
@@ -17,3 +17,5 @@ class GroupAdmin(admin.ModelAdmin):
 
 admin.site.register(Person, PersonAdmin)
 admin.site.register(Group, GroupAdmin)
+
+admin.site.register(MyModel)
