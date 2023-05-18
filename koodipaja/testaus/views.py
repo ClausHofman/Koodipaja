@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from users.models import Profile
-from languages.models import Language, LanguageExample
+from projects.models import ProjectArticle
 from .models import MyModel
 from django.http import JsonResponse
 
@@ -11,18 +11,13 @@ def testingHomepage(request):
     return render(request, 'main_testing.html')
 
 
-def viewTest1(request, pk):
-    profile = Profile.objects.get(id=pk)
+def testi_kysely(request):
+    # TODO: maybe use this later
+    articles = ProjectArticle.objects.filter(favorite=True)
 
-    context = {'profile': profile}
-    return render(request, 'testing/test-views-1.html', context)
+    context = {'articles': articles}
 
-
-def viewTest2(request, pk):
-    profile = Profile.objects.get(id=pk)
-
-    context = {'profile': profile}
-    return render(request, 'testing/test-views-2.html', context)
+    return render(request, 'testing/testi_kysely.html', context)
 
 
 def toggle_boolean(request, pk):

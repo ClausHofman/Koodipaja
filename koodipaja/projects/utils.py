@@ -87,7 +87,6 @@ def utils_search_articles(request):
         Q(owner__name__icontains=search_query) |
         # does the Project tags queryset contain the tags that are input in the search_query (the filter)
         Q(tags__in=tags)
-        # we could add another value that says a user has to exist
     )
 
     return articles, search_query

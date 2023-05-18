@@ -1,0 +1,18 @@
+{% extends "main.html" %}
+
+{% block content %}
+
+
+{% for article in articles %}
+<table>
+    <tr>
+        <th></th>
+        <td>
+            {{article.title}}
+        </td>
+    </tr>
+</table>
+
+{% endfor %}
+
+{% endblock content %}
