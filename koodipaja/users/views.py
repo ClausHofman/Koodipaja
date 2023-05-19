@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 # from django.urls import conf
 from .forms import CustomUserCreationForm
 from .models import Profile
-
+from projects.models import ProjectArticle
 
 def loginUser(request):
     page = 'login'
@@ -90,3 +90,19 @@ def userProfile(request, pk):
     context = {'profile': profile}
     print(context)
     return render(request, 'users/user-profile.html', context)
+
+
+@login_required(login_url='users:login')
+def userAccount(request):
+    profile = request.user.profile
+    # projects = profile.project_set.all()
+
+    articles = ProjectArticle.objects.filter(favorite=True)
+    
+    context = {'profile':profile, 'articles': articles}
+
+    return render(request, 'users/account.html', context)
+
+
+def show_favorite_articles(request):
+    pass

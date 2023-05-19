@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<a style="font-size: x-large;" href="{% url 'projects:list-page-articles' object2.id %}">Go Back</a>
+<button onclick="history.back()">Go Back</button>
 
 <form method="POST">
     {% csrf_token %}
