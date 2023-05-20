@@ -10,4 +10,9 @@ urlpatterns = [
 
     path('toggle/<int:pk>/', views.toggle_boolean, name='toggle-boolean'),
 
+    path('muistipeli/', views.muistipeli, name='muistipeli'),
+
+    path('create-malli-1/', views.create_malli1, name='create-malli-1'),
+    path('new-muistipeli/', views.new_muistipeli, name='new-muistipeli'),
+
 ]

@@ -1,0 +1,22 @@
+{% extends "main.html" %}
+
+{% block content %}
+
+<button onclick="history.back()">Go Back</button>
+<div>
+    <a style="font-size:x-large;" href="{% url 'testaus:create-malli-1' %}">Create new malli-1&nbsp;</a>
+</div>
+<div>
+    <a style="font-size:x-large;" href="{% url 'testaus:new-muistipeli' %}">New Muistipeli&nbsp;</a>
+</div>
+<hr>
+
+{% for malli in malli1 %}
+
+<p>{{malli.question}}</p>
+
+{% endfor %}
+
+<br>
+
+{% endblock content %}

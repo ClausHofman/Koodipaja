@@ -143,12 +143,16 @@ EMAIL_HOST_PASSWORD = os.getenv("app_password")
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
+# image upload, create filepath
+MEDIA_URL = '/media/'
 
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
-    'static/styles/',
-    'languages/static/css/',
+    'static/styles',
+    'static/media/users'
 ]
+# image upload, create filepath
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media')
 
 
 # Default primary key field type
