@@ -14,7 +14,10 @@ urlpatterns = [
 
     path('create-malli-1/', views.create_malli1, name='create-malli-1'),
     path('new-muistipeli/', views.new_muistipeli, name='new-muistipeli'),
-    path('move_game/', views.move_game, name='move-game'),
+    path('move-active/<int:pk>/',
+         views.move_question_to_active, name='move-question-to-active'),
+    path('move-inactive/<int:pk>/',
+         views.move_question_to_inactive, name='move-question-to-inactive'),
 
     path('send_dict/', views.send_dictionary, name='send-dict'),
 
