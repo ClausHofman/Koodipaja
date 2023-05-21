@@ -6,6 +6,10 @@
 
 # PRIORITY: Profile page? Maybe with some button(s).
 
+# TODO: Search from favorite articles
+
+# TODO: Figure out how to expand content of fav article by clicking link (stay on same page)
+
 # TODO: Some kind of note section?
 
 # TODO: some css for login/register pages.

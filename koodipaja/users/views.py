@@ -103,6 +103,7 @@ def userAccount(request):
 
 
 def show_favorite_articles(request):
-    # articles = ProjectArticle.objects.filter(favorite=True)
-    # context = {'articles': articles}
-    pass
+    articles = ProjectArticle.objects.filter(favorite=True)
+    context = {'articles': articles}
+
+    return render(request, 'users/my_favorite_articles.html', context)

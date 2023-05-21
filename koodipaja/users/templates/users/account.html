@@ -18,7 +18,20 @@
                 </a>
             </div>
         </div>
+        <div class="column">
+            <div>
+                <div class="card__body">
+                    <a href="{% url 'users:favorite-articles' %}">
+                        <h5>Favorite articles</h5>
+                    </a>
+                </div>
+                <a href="{% url 'users:favorite-articles' %}"><img src="{% static 'media/users/default.jpg' %}"
+                        class="card-img-top" alt="" style="width: 75%; height: 12em; object-fit:fill;"></a>
+                </a>
+            </div>
+        </div>
     </div>
 </div>
+<hr>
 
 {% endblock content %}

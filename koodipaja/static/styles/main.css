@@ -106,7 +106,7 @@ Grid
   }
 
   .grid--three>.column {
-    flex-basis: 31%;
+    flex-basis: 28%;
   }
 }
 

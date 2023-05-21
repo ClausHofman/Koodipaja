@@ -3,11 +3,13 @@
 {% block content %}
 
 <!-- Main Section -->
-<main class="settingsPage profile my-md">
+<main class>
+    <button onclick="history.back()">Go Back</button>
     <div class="container">
         <div class="layout">
             <div class="settings">
-                <h3 class="settings__title">Favorite Articles</h3>
+                <h3 class="settings__title">Favorite articles</h3>
+                <hr>
             </div>
             <table class="settings__table">
                 {% for article in articles %}
@@ -15,7 +17,7 @@
                     <td class="settings__tableInfo">
                         <p>{{article.created}}</p>
                         <a href="{% url 'projects:view-article-title' article.id %}">{{article.title}}</a>
-                        <p>{{article.body|slice:"150"}}</p>
+                        <!-- <pre>{{article.body|slice:"3000"}}</pre> -->
                         <hr>
                     </td>
                 </tr>
