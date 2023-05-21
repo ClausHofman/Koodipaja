@@ -136,6 +136,58 @@ Grid
   margin-left: 50%;
 }
 
+/*
+Tables
+*/
+
+.tables-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: normal;
+}
+
+.arrow-cell {
+  position: relative;
+  text-align: center;
+}
+
+.left-arrow:before,
+.right-arrow:after {
+  content: '';
+  /* 'HTML entity for '<' */
+}
+
+.left-arrow:before {
+  padding-right: 5px;
+  /* Adjust the padding as needed */
+}
+
+.right-arrow:after {
+  content: '';
+  /* HTML entity for '>' */
+  padding-left: 5px;
+  /* Adjust the padding as needed */
+}
+
+.up-arrow:before,
+.down-arrow:after {
+  content: '\002D';
+  /* HTML entity for '-' */
+}
+
+.up-arrow:before {
+  padding-bottom: 5px;
+  /* Adjust the padding as needed */
+}
+
+.down-arrow:after {
+  content: '\002B';
+  /* HTML entity for '+' */
+  padding-top: 5px;
+  /* Adjust the padding as needed */
+}
+
+
 /* .table-container {
   display: flex;
 }
@@ -146,14 +198,14 @@ Grid
 
 
 
-.table-container {
+/* .table-container {
   display: flex;
   justify-content: space-between;
 }
 
 .table {
   width: 30%;
-}
+} */
 
 /*
 #my-id {

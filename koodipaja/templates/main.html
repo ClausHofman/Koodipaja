@@ -1,24 +1,33 @@
 <!DOCTYPE html>
 {% load static %}
+
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Koodipaja</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Koodipaja</title>
+
   <link rel="stylesheet" href="{% static 'main.css' %}">
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
     crossorigin="anonymous"></script>
-  <!-- <script type="module" src="https://md-block.verou.me/md-block.js"></script> -->
+
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
+  <!-- <script type="module" src="https://md-block.verou.me/md-block.js"></script> -->
 </head>
 
 <body class="body">
+
+  <!-- Navigation bar -->
+
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <div class="container-fluid">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
@@ -27,35 +36,57 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
+
+          <!-- Navigation bar links -->
+
+          <!-- Home page -->
           <a style="padding-left: 5px; padding-right: 5px;" class="nav-link"
             href="{% url 'kotisivu:kotisivu' %}">Home</a>
+
           <a class="nav-link" href="">|</a>
+
+          <!-- My page / Account page -->
           <a style="padding-left: 5px; padding-right: 5px;" class="nav-link" href="{% url 'users:account' %}">My
             Page</a>
+
           <a class="nav-link" href="">|</a>
+
+          <!-- Projects page -->
           <a style="padding-left: 5px; padding-right: 5px;" class="nav-link"
             href="{% url 'projects:list-projects' %}">Projects</a>
+
+          <a class="nav-link" href="">|</a>
+
+          <!-- Admin page -->
+          <a style="padding-left: 5px; padding-right: 5px;" class="nav-link" href="/admin/">Admin</a>
+
           <a class="nav-link" href="">|</a>
         </div>
-        <!-- <a class="nav-link" href="{% url 'tktutkija:kysely1' %}">Tutkija</a> -->
-        <!-- <a class="nav-link" href="{% url 'testaus:testing' %}">Testing</a> -->
+
+        <!-- Search dropdown -->
+
         <div class="dropdown">
           <button class="dropbtn">Search</button>
           <i class="fa fa-caret-down"></i>
           <div class="dropdown-content">
+
+            <!-- Search by page title -->
             <div style="overflow: hidden; white-space: nowrap;"><a href="{% url 'projects:search-page-titles' %}">Page
                 Titles</a></div>
+
+            <!-- Search by article title -->
             <div style="overflow: hidden; white-space: nowrap;"><a
                 href="{% url 'projects:search-article-titles' %}">Article Titles</a></div>
-            <!-- <a href="{% url 'languages:list-languages' %}">Languages</a> -->
-            <!-- <a href="{% url 'frameworks:framework-list' %}">Frameworks</a> -->
           </div>
         </div>
       </div>
-      <div class="navbar-nav">
+      <div>
+
+        <!-- Check if user is logged in -->
         {% if request.user.is_authenticated %}
         <a href="{% url 'users:logout' %}" style="padding-left: 5px; padding-right: 5px;" class="nav-link">Logout</a>
 
+        <!-- If user is not logged in -->
         {% else %}
         <a href="{% url 'users:login' %}" style="padding-left: 5px; padding-right: 5px" ; class="nav-link">Login/Sign
           up</a>
@@ -64,9 +95,13 @@
     </div>
   </nav>
 
+  <!-- Site notes link conditional rendering -->
   {% if page == 'kotisivu' %}
+
   <a style="font-size:larger;padding-top:5px;" href="{% url 'kotisivu:site-notes' %}">View site notes</a>
+
   {% else %}
+
   {% endif %}
 
   {% block content %}

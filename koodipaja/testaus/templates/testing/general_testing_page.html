@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Accessing Dictionary Key-Value Pairs</title>
+</head>
+
+<body>
+    <!-- Your HTML content -->
+
+    <script>
+        // JavaScript code here
+        // TODO: this could work
+        var listOfDictionaries = [
+            { key1: 'value1', key2: 'value2' },
+            { key3: 'value3', key4: 'value4' },
+            { key5: 'value5', key6: 'value6' }
+        ];
+
+        for (var i = 0; i < listOfDictionaries.length; i++) {
+            var dictionary = listOfDictionaries[i];
+
+            Object.entries(dictionary).forEach(([key, value]) => {
+                console.log('Key:', key);
+                console.log('Value:', value);
+            });
+        }
+    </script>
+</body>
+
+</html>

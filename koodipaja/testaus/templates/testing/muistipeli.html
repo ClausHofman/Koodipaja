@@ -6,38 +6,36 @@
 
 <button onclick="history.back()">Go Back</button>
 <div>
-    <a style="font-size:x-large;" href="{% url 'testaus:create-malli-1' %}">Create new malli-1&nbsp;</a>
+    <a style="font-size:x-large;" href="{% url 'testaus:new-muistipeli' %}">Create new memory card&nbsp;</a>
 </div>
+<hr>
 <div>
-    <a style="font-size:x-large;" href="{% url 'testaus:new-muistipeli' %}">New Muistipeli&nbsp;</a>
+    <a style="font-size:x-large;" href="{% url 'testaus:create-malli-1' %}">Create new question and answer&nbsp;</a>
 </div>
 
 <hr>
 
 
 <style>
-    .table-container {
-        display: flex;
-        justify-content: space-between;
-    }
-
     .table {
         width: 30%;
     }
 </style>
 
-<div class="table-container">
+<div class="tables-container">
     <div class="table">
-        <table>
+        <table class="left-table">
             <thead>
                 <tr>
                     <th>Inactive</th>
                 </tr>
             </thead>
             <tbody>
-                {% for kikkare in kikkare %}
+                {% for malli1 in malli1 %}
                 <tr>
-                    <td><a href="{% url 'testaus:move-question-to-active' kikkare.id %}">{{ kikkare.question }}</a></td>
+                    <td>{{ malli1.question }}</td>
+                    <td class="arrow-cell right-arrow"><a style="font-size:20px; margin-left:5px"
+                            href="{% url 'testaus:move-question-to-active' malli1.id %}">&gt;&gt;</a></td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -45,16 +43,20 @@
     </div>
 
     <div class="table">
-        <table>
+        <table class="middle-table">
             <thead>
                 <tr>
                     <th>Active</th>
                 </tr>
             </thead>
             <tbody>
-                {% for kikkare2 in kikkare2 %}
+                {% for malli2 in malli2 %}
                 <tr>
-                    <td><a href="{% url 'testaus:move-question-to-inactive' kikkare2.id %}">{{ kikkare2.question }}</a>
+                    <td class="arrow-cell left-arrow"><a style="font-size:20px; margin-right:5px"
+                            href="{% url 'testaus:move-question-to-inactive' malli2.id %}">&lt;&lt;</a></td>
+                    <td>{{ malli2.question }}
+                    </td>
+                    <td class="arrow-cell right-arrow"><a style="font-size:20px; margin-left:5px" href="">&gt;&gt;</a>
                     </td>
                 </tr>
                 {% endfor %}
@@ -63,7 +65,7 @@
     </div>
 
     <div class="table">
-        <table>
+        <table class="right-table">
             <thead>
                 <tr>
                     <th>Learned</th>
@@ -71,7 +73,8 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>-</td>
+                    <td class="arrow-cell left-arrow">&lt;</td>
+                    <td>asjdkfjasklfasdklfj</td>
                 </tr>
             </tbody>
         </table>

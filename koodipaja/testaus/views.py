@@ -14,6 +14,10 @@ def testingHomepage(request):
     return render(request, 'main_testing.html')
 
 
+def general_testing(request):
+    return render(request, 'testing/general_testing_page.html')
+
+
 def testi_kysely(request):
     articles = ProjectArticle.objects.filter(favorite=True)
 
@@ -42,13 +46,13 @@ def toggle_boolean(request, pk):
 def muistipeli(request):
     if request.user.is_authenticated:
         profile = request.user.profile
-        kikkare = profile.malli1_set.all()
+        malli1 = profile.malli1_set.all()
 
-        kikkare2 = profile.malli2_set.all()
+        malli2 = profile.malli2_set.all()
     else:
         return redirect('users:login')
 
-    context = {'kikkare': kikkare, 'kikkare2': kikkare2}
+    context = {'malli1': malli1, 'malli2': malli2}
     return render(request, 'testing/muistipeli.html', context)
 
 
@@ -159,13 +163,11 @@ def move_question_to_inactive(request, pk):
 
 
 def send_dictionary(request):
-    # create data dictionary
     mallit = Malli1.objects.all()
 
     my_objects_dict = []
 
     for obj in mallit:
-        print(obj)
         obj_dict = {
             'question': obj.question,
             'answer': obj.answer
@@ -174,11 +176,8 @@ def send_dictionary(request):
         # Append the dictionary to the list
         my_objects_dict.append(obj_dict)
 
-    # context = {'my_objects_dict': my_objects_dict}
-
-    # dump data
     try:
-        dataJSON = dumps(my_objects_dict[0])
+        dataJSON = dumps(my_objects_dict)
         return render(request, 'testing/landing.html', {'data': dataJSON})
     except:
         return render(request, 'testing/landing.html')

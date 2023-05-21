@@ -8,12 +8,13 @@
     <div class="grid grid--three">
         <div class="column">
             <div>
-                <a href="">
-                    <div class="card__body">
-                        <h3>ASSKFJASKFJASKLFJASKLDFJASKLDFJKLASJDF</h3>
-                    </div>
-                    <img src="{% static 'media/users/default_PAy84k2.jpg' %}" class="card-img-top" alt=""
-                        style="width: 100%; height: 12em; object-fit: cover;">
+                <div class="card__body">
+                    <a href="{% url 'testaus:muistipeli' %}">
+                        <h5>Go to Memory Cards</h5>
+                    </a>
+                </div>
+                <a href="{% url 'testaus:muistipeli' %}"><img src="{% static 'media/users/mem-cards.jpg' %}"
+                        class="card-img-top" alt="" style="width: 75%; height: 12em; object-fit: cover;"></a>
                 </a>
             </div>
         </div>
