@@ -128,10 +128,40 @@ Grid
   }
 }
 
+.space-between {
+  margin-left: 0px;
+}
 
+.margin-left-50 {
+  margin-left: 50%;
+}
 
+/*
+#my-id {
+  background-color: yellow;
+  border: 1px solid black;
+}
+<div id="my-id">This div has the "my-id" ID applied to it.</div>
+*/
 
+/*
+<div class="parent">
+  <p class="child">Child 1</p>
+  <p class="child">Child 2</p>
+  <p class="child">Child 3</p>
+</div>
 
+.parent {
+  background-color: lightgray;
+  padding: 10px;
+}
+
+.parent .child {
+  font-weight: bold;
+  color: blue;
+}
+
+*/
 
 
 

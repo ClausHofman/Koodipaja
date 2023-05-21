@@ -1,3 +1,4 @@
+from json import dumps
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
@@ -40,10 +41,12 @@ def muistipeli(request):
     if request.user.is_authenticated:
         profile = request.user.profile
         kikkare = profile.malli1_set.all()
+
+        kikkare2 = profile.malli2_set.all()
     else:
         return redirect('users:login')
 
-    context = {'kikkare': kikkare}
+    context = {'kikkare': kikkare, 'kikkare2': kikkare2}
     return render(request, 'testing/muistipeli.html', context)
 
 
@@ -79,3 +82,68 @@ def create_malli1(request):
     context = {'form': form}
 
     return render(request, 'testing/malli1_form.html', context)
+
+
+def move_game(request):
+    model1_instance = Malli1.objects.first()
+    initial_values = {
+        'owner': model1_instance.owner,
+        'muistipeli': model1_instance.muistipeli,
+        'question': model1_instance.question,
+        'answer': model1_instance.answer
+        # Add more fields from Model1 as needed
+    }
+
+    if request.method == 'POST':
+        form = Malli1Form(request.POST)
+        if form.is_valid():
+            # Create a new instance of Model2 and copy the data from Model1
+            model2_instance = Malli2(
+                owner=form.cleaned_data['owner'],
+                muistipeli=form.cleaned_data['muistipeli'],
+                question=form.cleaned_data['question'],
+                answer=form.cleaned_data['answer'],
+                # Copy more fields from Model1 as needed
+            )
+            model2_instance.save()
+
+            # Delete the original Model1 instance
+            model1_instance.delete()
+
+            # Redirect to a success view after successful submission
+            return redirect('testaus:muistipeli')
+    else:
+        form = Malli1Form(initial=initial_values)
+
+    context = {'form': form}
+
+    return render(request, 'testing/move_game_form.html', context)
+
+
+# geeksforgeeks example
+
+
+def send_dictionary(request):
+    # create data dictionary
+    mallit = Malli1.objects.all()
+
+    my_objects_dict = []
+
+    for obj in mallit:
+        print(obj)
+        obj_dict = {
+            'question': obj.question,
+            'answer': obj.answer
+        }
+
+        # Append the dictionary to the list
+        my_objects_dict.append(obj_dict)
+
+    # context = {'my_objects_dict': my_objects_dict}
+
+    # dump data
+    try:
+        dataJSON = dumps(my_objects_dict[0])
+        return render(request, 'testing/landing.html', {'data': dataJSON})
+    except:
+        return render(request, 'testing/landing.html')

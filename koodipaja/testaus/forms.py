@@ -11,10 +11,10 @@ class MuistipeliForm(ModelForm):
 class Malli1Form(ModelForm):
     class Meta:
         model = Malli1
-        fields = ['muistipeli', 'question', 'answer']
+        fields = ['owner', 'muistipeli', 'question', 'answer']
 
 
 class Malli2Form(ModelForm):
     class Meta:
         model = Malli2
-        fields = ['muistipeli', 'question', 'answer']
+        fields = ['owner', 'muistipeli', 'question', 'answer']

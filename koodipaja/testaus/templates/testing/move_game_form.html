@@ -1,0 +1,52 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<main>
+    <div>
+        <div>
+            <button onclick="history.back()">Go Back</button>
+            <hr>
+
+            <form class="form" id="moveGame" action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                {% for field in form %}
+                <table>
+                    <tr>
+                        <th>
+                        <td>
+                            <label for="formInput#text">{{field.label}}</label>
+                        </td>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                        <td name="task" id="task">
+                            {{field}}
+                        </td>
+                        </th>
+                    </tr>
+                </table>
+                {% endfor %}
+
+                <input type="submit" value="Submit" />
+            </form>
+        </div>
+    </div>
+</main>
+
+<script>
+    window.addEventListener('DOMContentLoaded', function () {
+        var shouldAutoSubmit = true;  // Set the value based on your logic
+
+        if (shouldAutoSubmit) {
+            // Wait for a short delay, then submit the form
+            setTimeout(function () {
+                document.getElementById('moveGame').submit();
+            }, 0);  // Adjust the delay as needed
+        }
+    });
+</script>
+
+
+{% endblock content %}

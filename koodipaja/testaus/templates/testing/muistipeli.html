@@ -9,12 +9,21 @@
 <div>
     <a style="font-size:x-large;" href="{% url 'testaus:new-muistipeli' %}">New Muistipeli&nbsp;</a>
 </div>
+<div>
+    <a style="font-size:x-large;" href="{% url 'testaus:move-game' %}">Move Game&nbsp;</a>
+</div>
 <hr>
 
-{% for malli in malli1 %}
 
-<p>{{malli.question}}</p>
+{% for kikkare in kikkare %}
+<p>{{ kikkare.question }}</p>
+{% endfor %}
 
+
+{% for kikkare2 in kikkare2 %}
+<div>
+    <p class="margin-left-50">{{ kikkare2.question }}</p>
+</div>
 {% endfor %}
 
 <br>
