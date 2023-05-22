@@ -17,7 +17,7 @@
                     <td class="settings__tableInfo">
                         <p>{{article.created}}</p>
                         <a href="{% url 'projects:view-article-title' article.id %}">{{article.title}}</a>
-                        <!-- <pre>{{article.body|slice:"3000"}}</pre> -->
+                        <pre>{{article.body|slice:"3000"}}</pre>
                         <hr>
                     </td>
                 </tr>

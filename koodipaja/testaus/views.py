@@ -6,6 +6,7 @@ from users.models import Profile
 from projects.models import ProjectArticle
 from .models import MyModel, Malli1, Malli2
 from .forms import Malli1Form, Malli2Form, MuistipeliForm
+from pprint import pprint
 
 # Create your views here.
 
@@ -15,7 +16,20 @@ def testingHomepage(request):
 
 
 def general_testing(request):
-    return render(request, 'testing/general_testing_page.html')
+    mydata = Malli2.objects.values('question')
+    mydata2 = Malli2.objects.values('answer')
+
+    lista = []
+    sk = {}
+    for x,y in zip(mydata, mydata2):
+        sk['question'] = x['question']
+        sk['answer'] = y['answer']
+        lista.append(sk)
+    pprint(lista)
+    
+    context = {'mydata':mydata, 'mydata2':mydata2}
+
+    return render(request, 'testing/general_testing_page.html', context)
 
 
 def testi_kysely(request):
@@ -163,7 +177,7 @@ def move_question_to_inactive(request, pk):
 
 
 def send_dictionary(request):
-    mallit = Malli1.objects.all()
+    mallit = Malli2.objects.all()
 
     my_objects_dict = []
 
