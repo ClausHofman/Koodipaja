@@ -23,10 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('users.urls')),
     path('', include('kotisivu.urls')),
-    path('', include('languages.urls')),
     path('', include('testaus.urls')),
-    path('', include('tktutkija.urls')),
-    path('', include('frameworks.urls')),
     path('', include('projects.urls')),
 
     path('reset_password/', auth_views.PasswordResetView.as_view(template_name="reset_password.html"),

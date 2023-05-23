@@ -32,13 +32,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'tktutkija.apps.TktutkijaConfig',
     'testaus.apps.TestausConfig',
-    'frameworks.apps.FrameworksConfig',
     'users.apps.UsersConfig',
     'kotisivu.apps.KotisivuConfig',
-    'languages.apps.LanguagesConfig',
-    # 'todoapp.apps.TodoappConfig',
     'noteapp.apps.NoteappConfig',
     'projects.apps.ProjectsConfig',
     'django.contrib.admin',
