@@ -75,3 +75,10 @@ class Malli2(models.Model):
 
     def __str__(self):
         return self.question
+
+
+
+
+class QuestionAnswerPair(models.Model):
+    question_text = models.TextField()
+    answer_text = models.TextField()

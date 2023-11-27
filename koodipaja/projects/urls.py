@@ -1,19 +1,8 @@
 from django.urls import path, include
 from . import views
 
-from rest_framework.routers import DefaultRouter
-from .views import ProjectViewSet, ProjectPageTitleViewSet, ProjectArticleViewSet
-
-router = DefaultRouter()
-router.register(r'project', ProjectViewSet, basename='project')
-router.register(r'project_title', ProjectPageTitleViewSet, basename='project_title')
-router.register(r'project_article', ProjectArticleViewSet, basename='project_article')
-
 urlpatterns = [
-    #API URLs
-    path('api/', include(router.urls)),
-
-    #Non-API URLs
+    
     path('list-projects/', views.listProjects, name='list-projects'),
     path('list-project-pages/<str:pk>/',
          views.viewSingleProject, name='list-project-pages'),

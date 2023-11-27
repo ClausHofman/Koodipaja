@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import (Person, Group, Membership, MyModel,
-                     Malli1, Malli2, Muistipeli)
+                     Malli1, Malli2, Muistipeli, QuestionAnswerPair)
 
 
 class MembershipInline(admin.TabularInline):
@@ -24,3 +24,5 @@ admin.site.register(MyModel)
 admin.site.register(Malli1)
 admin.site.register(Malli2)
 admin.site.register(Muistipeli)
+
+admin.site.register(QuestionAnswerPair)

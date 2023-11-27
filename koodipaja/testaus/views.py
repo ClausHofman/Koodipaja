@@ -8,8 +8,44 @@ from .models import MyModel, Malli1, Malli2
 from .forms import Malli1Form, Malli2Form, MuistipeliForm
 from pprint import pprint
 
-# Create your views here.
+from .models import QuestionAnswerPair
 
+def cards_test_page(request):
+    # Retrieve data from the database
+    question_answer_pairs = QuestionAnswerPair.objects.all()
+
+    # Render the template with the JavaScript file
+    return render(request, 'testing/cards_test.html', {'question_answer_pairs': question_answer_pairs})
+
+def get_data(request):
+    # Retrieve data from the database
+    question_answer_pairs = QuestionAnswerPair.objects.all()
+
+    # Serialize the data to JSON
+    serialized_data = [{'question': pair.question_text, 'answer': pair.answer_text} for pair in question_answer_pairs]
+
+    # Return JSON response
+    return JsonResponse(serialized_data, safe=False)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+################################################################
 
 def testingHomepage(request):
     return render(request, 'main_testing.html')

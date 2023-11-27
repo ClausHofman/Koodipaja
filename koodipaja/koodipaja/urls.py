@@ -19,14 +19,24 @@ from django.contrib.auth import views as auth_views
 from django.conf import settings
 from django.conf.urls.static import static
 
+from rest_framework.routers import DefaultRouter
+from projects.views import ProjectViewSet, ProjectPageTitleViewSet, ProjectArticleViewSet
+
+router = DefaultRouter()
+router.register(r'project', ProjectViewSet, basename='project')
+router.register(r'project_title', ProjectPageTitleViewSet, basename='project_title')
+router.register(r'project_article', ProjectArticleViewSet, basename='project_article')
+
 urlpatterns = [
+    path('api/', include(router.urls)),
+
     path('admin/', admin.site.urls),
     path('', include('users.urls')),
     path('', include('kotisivu.urls')),
     path('', include('testaus.urls')),
     path('', include('projects.urls')),
 
-    path('api/', include('projects.urls')),
+    # path('api/', include('projects.urls')),
 
     path('reset_password/', auth_views.PasswordResetView.as_view(template_name="reset_password.html"),
          name="reset_password"),
