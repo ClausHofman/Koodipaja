@@ -28,3 +28,5 @@
 # DONE: Environment variables.
 
 # DONE: Password resetting.
+
+# TODO: email env variable

@@ -9,6 +9,24 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .utils import searchProjects, paginateProjects, utils_search_articles, utils_search_titles
 
+from rest_framework import viewsets
+from .serializers import ProjectSerializer, ProjectPageTitleSerializer, ProjectArticleSerializer
+
+# API
+class ProjectViewSet(viewsets.ModelViewSet):
+    queryset = Project.objects.all()
+    serializer_class = ProjectSerializer
+
+class ProjectPageTitleViewSet(viewsets.ModelViewSet):
+    queryset = ProjectPageTitle.objects.all()
+    serializer_class = ProjectPageTitleSerializer
+
+class ProjectArticleViewSet(viewsets.ModelViewSet):
+    queryset = ProjectArticle.objects.all()
+    serializer_class = ProjectArticleSerializer
+
+
+# Views
 
 @login_required(login_url='users:login')
 def search_articles(request):
