@@ -5,7 +5,7 @@ from .views import cards_test_page, get_data
 app_name = "testaus"
 
 urlpatterns = [
-    path('cards_test_page/', cards_test_page, name='cards_test_page'),
+    path('cards_test_page/', cards_test_page, name='cards_test_page'), # cards_test.html
     path('get_data/', get_data, name='get_data'),
 
 

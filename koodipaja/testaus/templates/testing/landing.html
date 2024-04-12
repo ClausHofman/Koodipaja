@@ -23,9 +23,16 @@
 
 </html>
 <script>
+    // just some testing
     var data = JSON.parse("{{data|escapejs}}");
+    console.log(data);
     var dataNode = document.getElementById('alldata');
-    dataNode.innerHTML += "{{data|escapejs}}";
+    for (var key in data) {
+        var value = data[key];
+        console.log(value)
+        dataNode.innerHTML += value.question + '   -   ' + value.answer + '<br><br>';
+    }
+
     dataNode = document.getElementById('neatdata');
     for (var x in data) {
         dataNode.innerHTML += x + ' : ' + data[x] + '<br><br>';

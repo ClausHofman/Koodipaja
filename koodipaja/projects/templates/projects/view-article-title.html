@@ -1,24 +1,17 @@
-{% extends "main.html" %}
-
-{% block content %}
-
-<button onclick="history.back()">Go Back</button>
+{% extends "main.html" %} {% block content %}
 
 <form method="POST">
-    {% csrf_token %}
-    {% if my_object.favorite %}
-    <button id="toggle-button" data-object-id="{{ my_object.pk }}">Remove from favourites</button>
-    {% else %}
-    <button id="toggle-button" data-object-id="{{ my_object.pk }}">Add to favourites</button>
-    {% endif %}
+  {% csrf_token %} {% if article_title.favorite %}
+  <button>Remove from favourites</button>
+  {% else %}
+  <button>Add to favourites</button>
+  {% endif %}
 </form>
-<hr>
-
+<hr />
 
 <h4>{{article_title.title}}</h4>
-<br>
-<pre style="font-size: x-large;">{{article_title.body}}</pre>
 
-
+<br />
+<pre style="font-size: x-large">{{article_title.body}}</pre>
 
 {% endblock content %}

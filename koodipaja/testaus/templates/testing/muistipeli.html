@@ -1,85 +1,93 @@
-{% extends "main.html" %}
-
-{% load static %}
-
-{% block content %}
+{% extends "main.html" %} {% load static %} {% block content %}
 
 <button onclick="history.back()">Go Back</button>
 <div>
-    <a style="font-size:x-large;" href="{% url 'testaus:new-muistipeli' %}">Create new memory card&nbsp;</a>
+  <a style="font-size: x-large" href="{% url 'testaus:new-muistipeli' %}"
+    >Create new memory card&nbsp;</a
+  >
 </div>
-<hr>
+<hr />
 <div>
-    <a style="font-size:x-large;" href="{% url 'testaus:create-malli-1' %}">Create new question and answer&nbsp;</a>
+  <a style="font-size: x-large" href="{% url 'testaus:create-malli-1' %}"
+    >Create new question and answer&nbsp;</a
+  >
 </div>
 
-<hr>
-
+<hr />
 
 <style>
-    .table {
-        width: 30%;
-    }
+  .table {
+    width: 30%;
+  }
 </style>
 
 <div class="tables-container">
-    <div class="table">
-        <table class="left-table">
-            <thead>
-                <tr>
-                    <th>Inactive</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for malli1 in malli1 %}
-                <tr>
-                    <td>{{ malli1.question }}</td>
-                    <td class="arrow-cell right-arrow"><a style="font-size:20px; margin-left:5px"
-                            href="{% url 'testaus:move-question-to-active' malli1.id %}">&gt;&gt;</a></td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+  <div class="table">
+    <table class="left-table">
+      <thead>
+        <tr>
+          <th>Inactive</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for malli1 in malli1 %}
+        <tr>
+          <td>{{ malli1.question }}</td>
+          <td class="arrow-cell right-arrow">
+            <a
+              style="font-size: 20px; margin-left: 5px"
+              href="{% url 'testaus:move-question-to-active' malli1.id %}"
+              >&gt;&gt;</a
+            >
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
 
-    <div class="table">
-        <table class="middle-table">
-            <thead>
-                <tr>
-                    <th>Active</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for malli2 in malli2 %}
-                <tr>
-                    <td class="arrow-cell left-arrow"><a style="font-size:20px; margin-right:5px"
-                            href="{% url 'testaus:move-question-to-inactive' malli2.id %}">&lt;&lt;</a></td>
-                    <td>{{ malli2.question }}
-                    </td>
-                    <td class="arrow-cell right-arrow"><a style="font-size:20px; margin-left:5px" href="">&gt;&gt;</a>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+  <div class="table">
+    <table class="middle-table">
+      <thead>
+        <tr>
+          <th>Active</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for malli2 in malli2 %}
+        <tr>
+          <td class="arrow-cell left-arrow">
+            <a
+              style="font-size: 20px; margin-right: 5px"
+              href="{% url 'testaus:move-question-to-inactive' malli2.id %}"
+              >&lt;&lt;</a
+            >
+          </td>
+          <td>{{ malli2.question }}</td>
+          <td class="arrow-cell right-arrow">
+            <a style="font-size: 20px; margin-left: 5px" href="">&gt;&gt;</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
 
-    <div class="table">
-        <table class="right-table">
-            <thead>
-                <tr>
-                    <th>Learned</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="arrow-cell left-arrow">&lt;</td>
-                    <td>asjdkfjasklfasdklfj</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+  <div class="table">
+    <table class="right-table">
+      <thead>
+        <tr>
+          <th>Learned</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="arrow-cell left-arrow">&lt;</td>
+          <td>hard coded test stuff</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
-
 
 {% endblock content %}
