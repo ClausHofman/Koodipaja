@@ -24,7 +24,7 @@
           // array.
           if (questionIndex > answerIndex && questionIndex <= questions_and_answers.length) {
             // First answerIndex is 0.
-            // answer_text is comes from the model (in models.py)
+            // answer_text and question_text are from the model (in models.py)
             myTextElement.textContent = questions_and_answers[answerIndex].answer_text;
             // By incrementing answerIndex by 1, it should now be equal to questionIndex.
             answerIndex++;
