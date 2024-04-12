@@ -1,5 +1,4 @@
 from django.http import JsonResponse
-from django.urls import reverse
 from django.shortcuts import render, redirect, get_object_or_404
 from users.models import Profile
 from .models import Project, ProjectPage, ProjectPageTitle, ProjectArticle
@@ -10,6 +9,8 @@ from django.contrib.auth.decorators import login_required
 from .utils import searchProjects, paginateProjects, utils_search_articles, utils_search_titles
 
 from rest_framework import viewsets
+from rest_framework.decorators import action
+from rest_framework.response import Response
 from .serializers import ProjectSerializer, ProjectPageTitleSerializer, ProjectArticleSerializer
 
 # API
@@ -24,7 +25,16 @@ class ProjectPageTitleViewSet(viewsets.ModelViewSet):
 class ProjectArticleViewSet(viewsets.ModelViewSet):
     queryset = ProjectArticle.objects.all()
     serializer_class = ProjectArticleSerializer
-
+    
+    @action(detail=True, methods=['get', 'put', 'patch', 'delete'])
+    def update_and_delete(self, request, pk=None):
+        # Your update and delete logic here
+        return Response({'detail': 'Update and delete response'})
+    
+    # @action(detail=False, methods=['get'])
+    # def custom_action(self, request, pk=None):
+    #     # Your custom action logic here
+    #     return Response({'detail': 'Custom action response'})
 
 # Views
 
@@ -119,18 +129,21 @@ def viewPageTitle(request, pk):
 
 @login_required(login_url='users:login')
 def viewArticleTitle(request, pk):
-    my_object = get_object_or_404(ProjectArticle, pk=pk)
-    if request.method == "POST" and request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-        # Toggle the BooleanField value
-        my_object.favorite = not my_object.favorite
-        my_object.save()
-
-        return JsonResponse({'my_boolean_field': my_object.favorite})
-
     profile = request.user.profile
     article_title = profile.projectarticle_set.get(id=pk)
 
-    context = {'article_title': article_title, 'my_object': my_object}
+    # testing utils generate_url
+    # print(generate_url('projects:view-article-title',pk))
+    
+    # article_object = get_object_or_404(ProjectArticle, pk=pk)
+    if request.method == "POST":
+        # Toggle the BooleanField value
+        article_title.favorite = not article_title.favorite
+        article_title.save()
+
+        return redirect('projects:view-article-title', pk)
+
+    context = {'article_title': article_title}
     context['object2'] = ProjectPageTitle.objects.get(projectarticle__id=pk)
 
     return render(request, 'projects/view-article-title.html', context)
