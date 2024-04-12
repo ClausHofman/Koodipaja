@@ -31,7 +31,7 @@
           }
           // If the indeces are equal then the next myTextElement should be a question_text, since I want to
           // alternate between questions and answers.
-          // If the if statement's condition is true then all questions and answers have been
+          // If the if statement's condition is not satisfied then all questions and answers have been
           // cycled through and the code continues in the else block.
           else if (questionIndex === answerIndex && questionIndex <= (questions_and_answers.length - 1)) {
             myTextElement.textContent = questions_and_answers[questionIndex].question_text;
