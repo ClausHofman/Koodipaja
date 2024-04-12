@@ -1,5 +1,5 @@
     // The fetch() function initiates an asynchronous network request to retrieve data from the specified URL.
-    // I'm using a Django REST Framework to make the api route.
+    // I'm using Django REST Framework to make the api route.
     fetch("/api/question_answer/")
       // The first .then() method is used to handle the response once it’s available. It ensures that we don’t block the main thread while waiting for the data.
       // Without this step, we’d have the raw response, which includes headers, status codes, and other metadata.
@@ -11,7 +11,7 @@
         let questionIndex = 0;
         let answerIndex = 0;
 
-        // The id of the element where the question and answer should go (it's in the html file)
+        // The id of the element (in the html file) for question_text and answer_text
         const myTextElement = document.getElementById('myText');
         // Button id
         const changeButton = document.getElementById('changeButton');
@@ -19,20 +19,20 @@
         // Event listener that triggers when 'changeButton' is clicked
         changeButton.addEventListener('click', () => {
           console.log(questions_and_answers);
-          // If questionIndex is greater than answerIndex it means the text ('myText') should be
+          // If questionIndex is greater than answerIndex it means the text (in myTextElement) should be
           // answer_text next. Also check that the indeces aren't greater than the length of the
           // array.
           if (questionIndex > answerIndex && questionIndex <= questions_and_answers.length) {
             // First answerIndex is 0.
             // answer_text is comes from the model (in models.py)
             myTextElement.textContent = questions_and_answers[answerIndex].answer_text;
-            // Next time check the next index by incrementing the index by 1
+            // By incrementing answerIndex by 1, it should now be equal to questionIndex.
             answerIndex++;
           }
-          // If the indeces are equal then the next text should be a question_text, since I want to
+          // If the indeces are equal then the next myTextElement should be a question_text, since I want to
           // alternate between questions and answers.
           // If the if statement's condition is true then all questions and answers have been
-          // cycled through and code continues in the else block.
+          // cycled through and the code continues in the else block.
           else if (questionIndex === answerIndex && questionIndex <= (questions_and_answers.length - 1)) {
             myTextElement.textContent = questions_and_answers[questionIndex].question_text;
             questionIndex = questionIndex + 1;
