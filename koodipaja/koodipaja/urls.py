@@ -22,10 +22,14 @@ from django.conf.urls.static import static
 from rest_framework.routers import DefaultRouter
 from projects.views import ProjectViewSet, ProjectPageTitleViewSet, ProjectArticleViewSet
 
+# testing stuff
+from testaus.views import QuestionAnswerPairViewSet
+
 router = DefaultRouter()
 router.register(r'project', ProjectViewSet, basename='project')
 router.register(r'project_title', ProjectPageTitleViewSet, basename='project_title')
 router.register(r'project_article', ProjectArticleViewSet, basename='project_article')
+router.register(r'question_answer', QuestionAnswerPairViewSet, basename='question_answer')
 
 urlpatterns = [
     path('api/', include(router.urls)),

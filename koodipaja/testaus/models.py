@@ -1,5 +1,6 @@
 from django.db import models
 from users.models import Profile
+from django.urls import reverse
 
 
 class Person(models.Model):
@@ -82,3 +83,5 @@ class Malli2(models.Model):
 class QuestionAnswerPair(models.Model):
     question_text = models.TextField()
     answer_text = models.TextField()
+    def __str__(self) -> str:
+        return self.question_text + " " + self.answer_text

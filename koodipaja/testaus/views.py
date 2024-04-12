@@ -1,21 +1,18 @@
 from json import dumps
 from django.shortcuts import render, get_object_or_404, redirect
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.contrib.auth.decorators import login_required
 from users.models import Profile
 from projects.models import ProjectArticle
-from .models import MyModel, Malli1, Malli2
+from .models import MyModel, Malli1, Malli2, QuestionAnswerPair
 from .forms import Malli1Form, Malli2Form, MuistipeliForm
+from rest_framework import viewsets
 from pprint import pprint
 
-from .models import QuestionAnswerPair
 
 def cards_test_page(request):
-    # Retrieve data from the database
-    question_answer_pairs = QuestionAnswerPair.objects.all()
-
     # Render the template with the JavaScript file
-    return render(request, 'testing/cards_test.html', {'question_answer_pairs': question_answer_pairs})
+    return render(request, 'testing/cards_test.html')
 
 def get_data(request):
     # Retrieve data from the database
@@ -23,11 +20,17 @@ def get_data(request):
 
     # Serialize the data to JSON
     serialized_data = [{'question': pair.question_text, 'answer': pair.answer_text} for pair in question_answer_pairs]
+    print(serialized_data)
 
     # Return JSON response
     return JsonResponse(serialized_data, safe=False)
 
+from .serializers import QuestionAnswerPairSerializer
 
+# API
+class QuestionAnswerPairViewSet(viewsets.ModelViewSet):
+    queryset = QuestionAnswerPair.objects.all()
+    serializer_class = QuestionAnswerPairSerializer
 
 
 
@@ -52,18 +55,18 @@ def testingHomepage(request):
 
 
 def general_testing(request):
-    mydata = Malli2.objects.values('question')
-    mydata2 = Malli2.objects.values('answer')
+    questions = Malli2.objects.values('question')
+    anwers = Malli2.objects.values('answer')
 
     lista = []
     sk = {}
-    for x,y in zip(mydata, mydata2):
+    for x,y in zip(questions, anwers):
         sk['question'] = x['question']
         sk['answer'] = y['answer']
         lista.append(sk)
-    pprint(lista)
+    # pprint(lista)
     
-    context = {'mydata':mydata, 'mydata2':mydata2}
+    context = {'questions':questions, 'answers':anwers}
 
     return render(request, 'testing/general_testing_page.html', context)
 
@@ -78,13 +81,13 @@ def testi_kysely(request):
 
 def toggle_boolean(request, pk):
     my_object = get_object_or_404(MyModel, pk=pk)
-
-    if request.method == "POST" and request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+    
+    if request.method == "POST":
         # Toggle the BooleanField value
         my_object.my_boolean_field = not my_object.my_boolean_field
         my_object.save()
 
-        return JsonResponse({'my_boolean_field': my_object.my_boolean_field})
+        return redirect('testaus:toggle-boolean', pk)
 
     # Render the template for normal page rendering
     return render(request, 'testing/my_template.html', {'my_object': my_object})
@@ -214,20 +217,34 @@ def move_question_to_inactive(request, pk):
 
 def send_dictionary(request):
     mallit = Malli2.objects.all()
+    q_a_pairs = QuestionAnswerPair.objects.all()
 
-    my_objects_dict = []
+    mallit_dict = []
+    q_a_pair_dict = []
 
     for obj in mallit:
+        obj_dict = {}
         obj_dict = {
             'question': obj.question,
             'answer': obj.answer
         }
 
         # Append the dictionary to the list
-        my_objects_dict.append(obj_dict)
+        mallit_dict.append(obj_dict)
+
+    for obj in q_a_pairs:
+        obj_dict = {}
+        obj_dict = {
+            'question': obj.question_text,
+            'answer': obj.answer_text
+        }
+
+        # Append the dictionary to the list
+        q_a_pair_dict.append(obj_dict)
+
 
     try:
-        dataJSON = dumps(my_objects_dict)
+        dataJSON = dumps(q_a_pair_dict)
         return render(request, 'testing/landing.html', {'data': dataJSON})
     except:
         return render(request, 'testing/landing.html')
