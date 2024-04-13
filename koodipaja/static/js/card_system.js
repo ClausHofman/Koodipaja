@@ -10,6 +10,7 @@
         // There's a question and answer key-value pair in the data, track both indeces separately, starting from 0
         let questionIndex = 0;
         let answerIndex = 0;
+        const dictionary_length = questions_and_answers.length;
 
         // The id of the element (in the html file) for question_text and answer_text
         const myTextElement = document.getElementById('myText');
@@ -18,11 +19,11 @@
 
         // Event listener that triggers when 'changeButton' is clicked
         changeButton.addEventListener('click', () => {
-          console.log(questions_and_answers);
+          // console.log(questions_and_answers);
           // If questionIndex is greater than answerIndex it means the text (in myTextElement) should be
           // answer_text next. Also check that the indeces aren't greater than the length of the
           // array.
-          if (questionIndex > answerIndex && questionIndex <= questions_and_answers.length) {
+          if (questionIndex > answerIndex && questionIndex <= dictionary_length) {
             // First answerIndex is 0.
             // answer_text and question_text are from the model (in models.py)
             myTextElement.textContent = questions_and_answers[answerIndex].answer_text;
@@ -33,7 +34,7 @@
           // alternate between questions and answers.
           // If the if statement's condition is not satisfied then all questions and answers have been
           // cycled through and the code continues in the else block.
-          else if (questionIndex === answerIndex && questionIndex <= (questions_and_answers.length - 1)) {
+          else if (questionIndex === answerIndex && questionIndex <= (dictionary_length - 1)) {
             myTextElement.textContent = questions_and_answers[questionIndex].question_text;
             questionIndex = questionIndex + 1;
           }
