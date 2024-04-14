@@ -5,26 +5,28 @@
 <!-- Main Section -->
 <main class>
     <button onclick="history.back()">Go Back</button>
-    <div class="container">
-        <div class="layout">
-            <div class="settings">
-                <h3 class="settings__title">Favorite articles</h3>
-                <hr>
-            </div>
-            <table class="settings__table">
-                {% for article in articles %}
-                <tr>
-                    <td class="settings__tableInfo">
-                        <p>{{article.created}}</p>
-                        <a href="{% url 'projects:view-article-title' article.id %}">{{article.title}}</a>
-                        <pre>{{article.body|slice:"3000"}}</pre>
-                        <hr>
-                    </td>
-                </tr>
-                {% endfor %}
-
-            </table>
+    <div class="layout">
+        <div>
+            <h3>Favorite articles</h3>
+            <hr>
         </div>
+        <table>
+            {% for article in articles %}
+            <tr>
+                <td>
+                    <div>
+                        <h4 class="article-title" href="{% url 'projects:view-article-title' article.id %}">
+                            {{article.title}}</h4>
+
+                        <pre style="display:none" class="favourite-article-content"
+                            id="fav-article">{{article.body}}</pre>
+                    </div>
+                    <hr>
+                </td>
+            </tr>
+            {% endfor %}
+
+        </table>
     </div>
     </div>
 </main>

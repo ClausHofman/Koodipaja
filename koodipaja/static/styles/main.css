@@ -5,12 +5,6 @@
 a:link {
   text-decoration: none;
 }
-
-a:hover {
-  text-decoration: underline;
-}
-
-
 .navbar a:hover {
   float: left;
   font-size: 30px;
