@@ -14,9 +14,13 @@
 }
 
 .hide {
-  display: none;
   visibility: hidden;
+  /* display: none; */
 }
+
+/* .pointer-events {
+
+} */
 
 .body {
   background-color: rgb(170, 240, 179);
