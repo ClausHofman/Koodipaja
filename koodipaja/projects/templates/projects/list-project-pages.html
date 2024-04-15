@@ -2,12 +2,13 @@
 
 {% block content %}
 
-<a style="font-size:x-large;" href="{% url 'projects:list-projects' %}">Go Back</a>
-<div>
-    <a style="font-size:x-large;" href="{% url 'projects:create-project-page' object.id %}">Add new page -&nbsp;</a><a
-        style="font-size:x-large;" href="{% url 'projects:create-project-page-tag' object.id %}">New Page Tag</a>
+<div class="project-top-div">
+    <a class="project-link" style="font-size: x-large" href="{% url 'projects:list-projects' %}">Go Back -&nbsp;</a>
+    <a class="project-link" style="font-size: x-large" href="{% url 'projects:create-project-page' object.id %}">Add new
+        page -&nbsp;</a><a class="project-link" style="font-size: x-large"
+        href="{% url 'projects:create-project-page-tag' object.id %}">New Page Tag</a>
 </div>
-<hr>
+<hr class="project-top-hr">
 
 {% for page in project_pages %}
 <table>

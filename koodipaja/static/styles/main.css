@@ -1,3 +1,18 @@
+.project-top-div {
+  background-color: lightblue;
+  height:40px;
+  margin-bottom:0%
+}
+.project-top-hr {
+  margin-top:0%;
+  margin-bottom:2px;
+}
+.project-link {
+  margin-right:0px;
+  color: black;
+  background-color:lightblue;
+}
+
 .body {
   background-color: rgb(170, 240, 179);
 }

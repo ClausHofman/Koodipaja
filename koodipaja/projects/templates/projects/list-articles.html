@@ -1,12 +1,13 @@
 {% extends "main.html" %} {% block content %}
 
-<a style="font-size: x-large" href="{% url 'projects:list-page-titles' object2.id %}">Go Back</a>
-<div>
-  <a style="font-size: x-large" href="{% url 'projects:create-article' object.id %}?next={{request.path}}">Create new
+<div class="project-top-div">
+  <a class="project-link" style="font-size: x-large" href="{% url 'projects:list-page-titles' object2.id %}">Go
+    Back -&nbsp;</a>
+  <a class="project-link" style="font-size: x-large"
+    href="{% url 'projects:create-article' object.id %}?next={{request.path}}">Create new
     article</a>
 </div>
-<hr />
-
+<hr class="project-top-hr" />
 {% for article in articles %}
 <table>
   <tr>
