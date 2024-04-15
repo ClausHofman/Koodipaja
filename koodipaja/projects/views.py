@@ -1,19 +1,21 @@
-from django.http import JsonResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from users.models import Profile
 from .models import Project, ProjectPage, ProjectPageTitle, ProjectArticle
 from .forms import (ProjectForm, ProjectTagForm, ProjectPageForm, ProjectArticleForm,
-                    ProjectPageTagForm, ProjectPageTitleForm)
+                    ProjectPageTagForm, ProjectPageTitleForm, UpdateProjectArticleForm)
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .utils import searchProjects, paginateProjects, utils_search_articles, utils_search_titles
-
 from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from .serializers import ProjectSerializer, ProjectPageTitleSerializer, ProjectArticleSerializer
+from pprint import pprint
 
 # API
+
+
 class ProjectViewSet(viewsets.ModelViewSet):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
@@ -131,6 +133,8 @@ def viewPageTitle(request, pk):
 def viewArticleTitle(request, pk):
     profile = request.user.profile
     article_title = profile.projectarticle_set.get(id=pk)
+    # pprint(ProjectArticle._meta.get_fields())
+    
 
     # testing utils generate_url
     # print(generate_url('projects:view-article-title',pk))
@@ -150,6 +154,21 @@ def viewArticleTitle(request, pk):
 
 
 # FORMS
+
+@login_required(login_url='users:login')
+def updateArticle(request, pk):
+    instance = get_object_or_404(ProjectArticle, pk=pk)    
+    page_title = ProjectPageTitle.objects.get(projectarticle__id=pk)
+    if request.method == 'POST':
+        form = UpdateProjectArticleForm(request.POST, instance=instance)
+        if form.is_valid():
+            form.save()
+            return redirect('projects:list-page-articles', page_title.id)
+    else:
+        # context['object'] = ProjectArticle.objects.get(projectarticle__id=pk)     
+        form = UpdateProjectArticleForm(instance=instance)
+        context = {'form': form}
+    return render(request, 'projects/updateprojectarticle_form.html', context)
 
 @login_required(login_url='users:login')
 def createProject(request):

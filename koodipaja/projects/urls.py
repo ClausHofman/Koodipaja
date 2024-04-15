@@ -16,6 +16,7 @@ urlpatterns = [
          views.viewPageTitle, name='list-page-articles'),
     path('create-project-article/<str:pk>/',
          views.createProjectArticle, name='create-article'),
+    path('update-article/<str:pk>/', views.updateArticle, name='update-article'),
     path('create-project-page-tag/<str:pk>/',
          views.createProjectPageTag, name="create-project-page-tag"),
     path('create-project-page-title/<str:pk>/',
