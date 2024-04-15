@@ -7,10 +7,15 @@
   margin-top:0%;
   margin-bottom:2px;
 }
-.project-link {
+.project-top-link {
   margin-right:0px;
   color: black;
   background-color:lightblue;
+}
+
+.hide {
+  display: none;
+  visibility: hidden;
 }
 
 .body {

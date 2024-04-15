@@ -1,9 +1,9 @@
 {% extends "main.html" %} {% block content %}
 
 <div class="project-top-div">
-  <a class="project-link" style="font-size: x-large" href="{% url 'projects:list-project-pages' object2.id %}">Go
+  <a class="project-top-link" style="font-size: x-large" href="{% url 'projects:list-project-pages' object2.id %}">Go
     Back -&nbsp;</a>
-  <a class="project-link" style="font-size: x-large"
+  <a class="project-top-link" style="font-size: x-large"
     href="{% url 'projects:create-project-page-title' object.id %}?next={{request.path}}">Create new title</a>
 </div>
 <hr class="project-top-hr" />

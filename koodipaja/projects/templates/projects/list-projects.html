@@ -3,9 +3,10 @@
 {% block content %}
 
 <div class="project-top-div">
-    <a class="project-link" style="font-size: x-large"
-        href="{% url 'projects:create-project' %}?next={{request.path}}">New Project -&nbsp;</a><a class="project-link"
-        style="font-size: x-large" href="{% url 'projects:create-project-tag' %}?next={{request.path}}">New Project
+    <a class="project-top-link" style="font-size: x-large"
+        href="{% url 'projects:create-project' %}?next={{request.path}}">New Project -&nbsp;</a><a
+        class="project-top-link" style="font-size: x-large"
+        href="{% url 'projects:create-project-tag' %}?next={{request.path}}">New Project
         Tag</a>
 </div>
 <hr class="project-top-hr" style="margin-bottom: 5px;">
