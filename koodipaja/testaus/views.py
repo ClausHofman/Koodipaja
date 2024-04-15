@@ -71,12 +71,12 @@ def general_testing(request):
     return render(request, 'testing/general_testing_page.html', context)
 
 
-def testi_kysely(request):
+def empty_test_page(request):
     articles = ProjectArticle.objects.filter(favorite=True)
 
     context = {'articles': articles}
 
-    return render(request, 'testing/testi_kysely.html', context)
+    return render(request, 'testing/empty_test_page.html', context)
 
 
 def toggle_boolean(request, pk):

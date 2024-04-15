@@ -13,7 +13,7 @@ urlpatterns = [
 
     path('general/', views.general_testing, name='general-testing'),
 
-    path('testi/', views.testi_kysely, name='testi_kysely'),
+    path('test-page/', views.empty_test_page, name='empty-test-page'),
 
     path('toggle/<int:pk>/', views.toggle_boolean, name='toggle-boolean'),
 
