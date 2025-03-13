@@ -78,10 +78,16 @@ class Malli2(models.Model):
         return self.question
 
 
-
-
 class QuestionAnswerPair(models.Model):
     question_text = models.TextField()
     answer_text = models.TextField()
     def __str__(self) -> str:
         return self.question_text + " " + self.answer_text
+    
+
+class ModelX(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=200, null=True, blank=True)
+
+    def __str__(self):
+        return self.name or ''

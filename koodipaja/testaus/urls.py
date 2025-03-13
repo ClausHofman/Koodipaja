@@ -1,10 +1,13 @@
 from django.urls import path
 from . import views
-from .views import cards_test_page, get_data
+from .views import cards_test_page, get_data, test_modelx
 
 app_name = "testaus"
 
 urlpatterns = [
+    path('test_modelx/', test_modelx, name='test_modelx'),
+    path('add_model_x/', views.add_model_x, name='add_model_x'),
+
     path('cards_test_page/', cards_test_page, name='cards_test_page'), # cards_test.html
     path('get_data/', get_data, name='get_data'),
 

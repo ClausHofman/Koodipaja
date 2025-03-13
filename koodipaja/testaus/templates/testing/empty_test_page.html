@@ -4,14 +4,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Testing</title>
-    <link rel="stylesheet" href="\static\styles-testing\styletest-1.css">
+    <title>Test Page</title>
 </head>
 
 <body>
-    <a style="font-size: xx-large;" href="{% url 'kotisivu:kotisivu' %}">Home</a>
 
+    <!-- List of entries -->
+    <div id="entry-list">
+        <!-- Entries will be displayed here dynamically -->
+    </div>
+
+    <!-- Modal for updating or deleting entry -->
+    <div id="update-delete-modal" class="modal" style="display:none">
+        <div class="modal-content">
+            <span class="close" id="close-update-delete-modal">&times;</span>
+            <div class="modal-body">
+                <div id="entry-details"></div>
+                <button class="testClass" style="display:none" id="update-entry">Update</button>
+                <button class="testClass" style="display:none" id="delete-entry">Delete</button>
+                <!-- Nested modal for update -->
+                <div id="update-modal" class="modal">
+                    <div class="modal-content">
+                        <span class="testClass" id="close-update-modal">&times;</span>
+                        <div class="modal-body">
+                            <!-- Update form will be displayed here -->
+                            <form id="update-form">
+                                <label for="updated-name">Name:</label>
+                                <input type="text" id="updated-name" name="updated-name">
+                                <label for="updated-description">Description:</label>
+                                <input type="text" id="updated-description" name="updated-description">
+                                <button type="submit" id="submit-update">Submit Update</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample array of entries (replace with your actual data)
+        const entries = [
+            { id: 1, name: 'Entry 1', description: 'Description 1' },
+            { id: 2, name: 'Entry 2', description: 'Description 2' },
+            { id: 3, name: 'Entry 3', description: 'Description 3' }
+        ];
+
+        // Function to display entries
+        function displayEntries() {
+            const entryList = document.getElementById('entry-list');
+            entryList.innerHTML = ''; // Clear previous entries
+            entries.forEach(entry => {
+                const entryElement = document.createElement('div');
+                entryElement.innerHTML = `
+            <p><strong>${entry.name}</strong> - ${entry.description}</p>
+        `;
+                // Attach click event listener to each entry element
+                entryElement.addEventListener('click', function () {
+                    // Store entry details in modal
+                    const entryDetails = document.getElementById('entry-details');
+                    entryDetails.innerHTML = `
+                <p><strong>Name:</strong> ${entry.name}</p>
+                <p><strong>Description:</strong> ${entry.description}</p>
+            `;
+                    // Store entry ID in a data attribute of the modal for later use
+                    document.getElementById('update-delete-modal').setAttribute('data-entry-id', entry.id);
+                    // Open update/delete modal
+                    openModal('update-delete-modal');
+                });
+                entryList.appendChild(entryElement);
+            });
+        }
+
+        // Function to open modal
+        function openModal(modalId) {
+            const elements = document.getElementsByClassName("testClass")
+            document.getElementById(modalId).style.display = "block";
+            for (let i = 0; i < elements.length; i++) {
+                elements[i].style.display = "block";
+            }
+        }
+
+        // Function to close modal
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = "none";
+        }
+
+        // Handle click event on update button in update/delete modal
+        document.getElementById('update-entry').addEventListener('click', function () {
+            // Show update modal
+            openModal('update-modal');
+        });
+
+        // Handle click event on submit button in update modal
+        document.getElementById('submit-update').addEventListener('click', function (e) {
+            e.preventDefault();
+            // Get updated values from form
+            const updatedName = document.getElementById('updated-name').value;
+            const updatedDescription = document.getElementById('updated-description').value;
+            // Get entry ID from data attribute of update/delete modal
+            const entryId = parseInt(document.getElementById('update-delete-modal').getAttribute('data-entry-id'));
+            // Perform update (Replace this with actual update logic)
+            console.log(`Updating entry with ID ${entryId} with new values: ${updatedName}, ${updatedDescription}`);
+            // Close update modal
+            closeModal('update-modal');
+            // Close update/delete modal
+            closeModal('update-delete-modal');
+        });
+
+        // Handle click event on delete button in update/delete modal
+        document.getElementById('delete-entry').addEventListener('click', function () {
+            // Get entry ID from data attribute of update/delete modal
+            const entryId = parseInt(document.getElementById('update-delete-modal').getAttribute('data-entry-id'));
+            // Perform deletion (Replace this with actual deletion logic)
+            console.log(`Deleting entry with ID ${entryId}`);
+            // Close update/delete modal
+            closeModal('update-delete-modal');
+            // Reload entries (if needed)
+            // displayEntries();
+        });
+
+        // Handle click event on close button in update/delete modal
+        document.getElementById('close-update-delete-modal').addEventListener('click', function () {
+            // Close update/delete modal
+            closeModal('update-delete-modal');
+        });
+
+        // Handle click event on close button in update modal
+        document.getElementById('close-update-modal').addEventListener('click', function () {
+            // Close update modal
+            closeModal('update-modal');
+        });
+
+        // Initial display of entries
+        displayEntries();
+
+    </script>
 </body>
-<script src="\static\js-testing\js-testing.js"></script>
 
 </html>

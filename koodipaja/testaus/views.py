@@ -4,8 +4,8 @@ from django.http import JsonResponse, HttpResponse
 from django.contrib.auth.decorators import login_required
 from users.models import Profile
 from projects.models import ProjectArticle
-from .models import MyModel, Malli1, Malli2, QuestionAnswerPair
-from .forms import Malli1Form, Malli2Form, MuistipeliForm
+from .models import MyModel, Malli1, Malli2, QuestionAnswerPair, ModelX
+from .forms import Malli1Form, Malli2Form, MuistipeliForm, ModelXForm
 from rest_framework import viewsets
 from pprint import pprint
 
@@ -24,6 +24,33 @@ def get_data(request):
 
     # Return JSON response
     return JsonResponse(serialized_data, safe=False)
+
+def test_modelx(request):
+    stuff = ModelX.objects.all()
+
+    context = {'stuff': stuff}
+
+    return render(request, 'testing/empty_test_page copy.html', context)
+
+# ModelX form
+# TODO: Try to make each box clickable that spawns a correct modal/dialog that supports multiple desired operations. If/when that's done, maybe could try something funky with overflow-x at some point (check ideas.txt)
+# check empty_test_page.html, empty_test_page copy.html, # empty_test_page copy 2.html, # empty_test_page copy 3.html
+def add_model_x(request):
+    if request.method == 'POST':
+        form = ModelXForm(request.POST)
+        if form.is_valid():
+            form = form.save()
+
+            return JsonResponse({'success': True})
+        else:
+            return JsonResponse({'success': False, 'errors': form.errors})
+    
+    else:
+        form = ModelXForm()
+
+    return render(request, 'testing/modelx_form.html', {'form': form})
+
+
 
 from .serializers import QuestionAnswerPairSerializer
 
