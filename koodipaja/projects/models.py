@@ -1,7 +1,7 @@
 from django.db import models
 import uuid
 from users.models import Profile
-
+from django.urls import reverse
 
 class Project(models.Model):
     owner = models.ForeignKey(
@@ -78,6 +78,10 @@ class ProjectArticle(models.Model):
     tags = models.ManyToManyField('ProjectArticleTag', blank=True)
     id = models.UUIDField(default=uuid.uuid4, unique=True,
                           primary_key=True, editable=False)
+    favorite = models.BooleanField(default=False)
+
+    # def get_absolute_url(self):
+    #     return reverse('article_detail', kwargs={'pk': self.pk})
 
     def __str__(self):
         # '' if there is no title
@@ -86,7 +90,7 @@ class ProjectArticle(models.Model):
     class Meta:
         # sort by "the date" in descending order unless
         # overridden in the query with order_by()
-        ordering = ['created']
+        ordering = ['-created']
 
 
 class ProjectTag(models.Model):

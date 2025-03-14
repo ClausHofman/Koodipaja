@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Modal Example</title>
+    <!-- Include Bootstrap CSS (for modal styling) -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!-- Include Bootstrap JS (required for modal functionality) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <style>
+        .square {
+            width: 100px;
+            height: 100px;
+            background-color: #3498db;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- WITH BOOTSTRAP -->
+
+    <!-- Modal -->
+    <div class="modal" id="add-x-modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Add Model X</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <!-- Modal Body -->
+                <div class="modal-body">
+                    <form id="add-x-form">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="name">Name:</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
+                        <!-- Add more form fields as needed -->
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+                <!-- Modal Footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Button to open modal -->
+    <button type="button" class="btn btn-primary" id="open-modal-button" data-toggle="modal" data-target="#add-x-modal">
+        Open Add Model X Modal
+    </button>
+    <hr>
+    {% for stuff in stuff %}
+    <div class="square">{{ stuff.name }}</div>
+    {% endfor %}
+
+    <!-- JavaScript code -->
+    <script>
+        $(document).ready(function () {
+            // Function to open modal
+            function openModal(modalId) {
+                $(`#${modalId}`).modal('show');
+            }
+
+            // Function to close modal
+            function closeModal(modalId) {
+                $(`#${modalId}`).modal('hide');
+            }
+
+            // Handle form submission using AJAX when modal form is submitted
+            $('#add-x-form').submit(function (e) {
+                e.preventDefault();
+                const formData = $(this).serialize();
+                $.post('/add_model_x/', formData)
+                    .done(function (response) {
+                        // Handle success, for example:
+                        // Close the modal
+                        closeModal('add-x-modal');
+                        // Reload the page to see changes
+                        location.reload();
+                    })
+                    .fail(function (xhr, status, error) {
+                        // Handle errors, for example:
+                        console.error('Error:', error);
+                        alert('An error occurred while submitting the form.');
+                    });
+            });
+
+            // Close the modal when the close button is clicked
+            $('.modal .close').click(function () {
+                closeModal('add-x-modal');
+            });
+        });
+    </script>
+
+</body>
+
+</html>

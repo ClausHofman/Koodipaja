@@ -1,26 +1,31 @@
-{% extends "main.html" %}
+{% extends "main.html" %} {% block content %}
 
-{% block content %}
-
-<a style="font-size:x-large;" href="{% url 'projects:list-project-pages' object2.id %}">Go Back</a>
-<div>
-    <a style="font-size:x-large;"
-        href="{% url 'projects:create-project-page-title' object.id %}?next={{request.path}}">Create new title</a>
+<div class="project-top-div">
+  <a class="project-top-link" style="font-size: x-large" href="{% url 'projects:list-project-pages' object2.id %}">Go
+    Back -&nbsp;</a>
+  <a class="project-top-link" style="font-size: x-large"
+    href="{% url 'projects:create-project-page-title' object.id %}?next={{request.path}}">Create new title -&nbsp;</a>
+  <span class="project-top-link" href="#" id="VisibilityButton" style="font-size: x-large;cursor: pointer;"
+    onclick="renameElements()">
+    Update Options</span>
 </div>
-<hr>
-
+<hr class="project-top-hr" />
 {% for title in page_titles %}
 <table>
-    <tr>
-        <th></th>
-        <td>
-            <a style="font-size:x-large;" href="{% url 'projects:list-page-articles' title.id %}">
-                {{title.title}}
-            </a>
-        </td>
-    </tr>
+  <tr>
+    <th></th>
+    <td>
+      <a style="font-size: x-large" href="{% url 'projects:list-page-articles' title.id %}">
+        {{title.title}}
+      </a>
+    </td>
+    <td>
+      <div class="hide">
+        <a style="font-size: x-large;text-decoration: underline;"
+          href="{% url 'projects:delete-page-title' title.id %}?from=list-page-titles">&nbsp;&nbsp;Delete</a>
+      </div>
+    </td>
+  </tr>
 </table>
 
-{% endfor %}
-
-{% endblock content %}
+{% endfor %} {% endblock content %}

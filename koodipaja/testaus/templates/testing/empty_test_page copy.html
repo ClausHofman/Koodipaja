@@ -1,0 +1,107 @@
+<!-- my_template.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model X Squares</title>
+    <style>
+        .square {
+            width: 100px;
+            height: 100px;
+            background-color: #3498db;
+            margin: 10px;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+    {% for stuff in stuff %}
+    <div class="square">{{ stuff.name }}</div>
+    {% endfor %}
+
+    <!-- Button to open the modal -->
+    <button id="add-x-button">Add Model X</button>
+
+    <!-- Modal -->
+    <div class="modal" id="add-x-modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="add-x-form">
+                    {% csrf_token %}
+                    <!-- Fields for Model X data -->
+                    <input type="text" name="name" placeholder="Name">
+                    <button type="submit">Add</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            // Function to open modal
+            function openModal(modalId) {
+                document.getElementById(modalId).style.display = "block";
+            }
+
+            // Function to close modal
+            function closeModal(modalId) {
+                document.getElementById(modalId).style.display = "none";
+            }
+
+            // Handle form submission using AJAX when modal form is submitted
+            $('#add-x-form').submit(function (e) {
+                e.preventDefault();
+                const formData = $(this).serialize();
+                $.post('/add_model_x/', formData)
+                    .done(function (response) {
+                        // Handle success, for example:
+                        // Close the modal
+                        closeModal('add-x-modal');
+                        // Reload the page to see changes
+                        location.reload();
+                    })
+                    .fail(function (xhr, status, error) {
+                        // Handle errors, for example:
+                        console.error('Error:', error);
+                        alert('An error occurred while submitting the form.');
+                    });
+            });
+
+            // Open the modal when the "Create New Item" button is clicked
+            $('#open-modal-button').click(function () {
+                openModal('add-x-modal');
+            });
+
+            // Close the modal when the close button is clicked
+            $('.modal .close').click(function () {
+                closeModal('add-x-modal');
+            });
+        });
+
+        // $(document).ready(function () {
+        //     // Handle form submission using AJAX
+        //     $('#add-x-form').submit(function (e) {
+        //         e.preventDefault();
+        //         const formData = $(this).serialize();
+        //         $.post('/add_model_x/', formData)
+        //             .done(function (response) {
+        //                 // Handle success, for example:
+        //                 location.reload();
+        //             })
+        //             .fail(function (xhr, status, error) {
+        //                 // Handle errors, for example:
+        //                 console.error('Error:', error);
+        //                 alert(error);
+        //             });
+        //     });
+        // });
+
+    </script>
+
+</body>
+
+</html>

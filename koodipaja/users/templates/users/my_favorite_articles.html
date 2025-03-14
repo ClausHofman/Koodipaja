@@ -1,0 +1,34 @@
+{% extends "main.html" %}
+
+{% block content %}
+
+<!-- Main Section -->
+<main class>
+    <button onclick="history.back()">Go Back</button>
+    <div class="layout">
+        <div>
+            <h3>Favorite articles</h3>
+            <hr>
+        </div>
+        <table>
+            {% for article in articles %}
+            <tr>
+                <td>
+                    <div>
+                        <h4 class="article-title" href="{% url 'projects:view-article-title' article.id %}">
+                            {{article.title}}</h4>
+
+                        <pre style="display:none" class="favourite-article-content"
+                            id="fav-article">{{article.body}}</pre>
+                    </div>
+                    <hr>
+                </td>
+            </tr>
+            {% endfor %}
+
+        </table>
+    </div>
+    </div>
+</main>
+
+{% endblock content %}

@@ -1,0 +1,37 @@
+{% extends "main.html" %}
+{% load static %}
+
+
+{% block content %}
+
+<div class="container">
+    <div class="grid grid--three">
+        <div class="column">
+            <div>
+                <div class="card__body">
+                    <a href="{% url 'testaus:muistipeli' %}">
+                        <h5>Go to Memory Cards</h5>
+                    </a>
+                </div>
+                <a href="{% url 'testaus:muistipeli' %}"><img src="{% static 'media/users/mem-cards.jpg' %}"
+                        class="card-img-top" alt="" style="width: 75%; height: 12em; object-fit: cover;"></a>
+                </a>
+            </div>
+        </div>
+        <div class="column">
+            <div>
+                <div class="card__body">
+                    <a href="{% url 'users:favorite-articles' %}">
+                        <h5>Favorite articles</h5>
+                    </a>
+                </div>
+                <a href="{% url 'users:favorite-articles' %}"><img src="{% static 'media/users/default.jpg' %}"
+                        class="card-img-top" alt="" style="width: 75%; height: 12em; object-fit:fill;"></a>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+
+{% endblock content %}

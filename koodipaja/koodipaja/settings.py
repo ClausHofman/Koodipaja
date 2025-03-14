@@ -32,13 +32,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'tktutkija.apps.TktutkijaConfig',
-    'testing.apps.TestingConfig',
-    'frameworks.apps.FrameworksConfig',
+    'testaus.apps.TestausConfig',
     'users.apps.UsersConfig',
     'kotisivu.apps.KotisivuConfig',
-    'languages.apps.LanguagesConfig',
-    # 'todoapp.apps.TodoappConfig',
     'noteapp.apps.NoteappConfig',
     'projects.apps.ProjectsConfig',
     'django.contrib.admin',
@@ -47,6 +43,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+
+    'import_export',
 ]
 
 MIDDLEWARE = [
@@ -83,23 +82,24 @@ WSGI_APPLICATION = 'koodipaja.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'koodipaja',
-#         'USER': 'postgres',
-#         'PASSWORD': 'Q2werty',
-#         'HOST': 'localhost',
-#         'PORT': '5432',
-#     }
-# }
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'koodipaja',
+        'USER': 'postgres',
+        'PASSWORD': os.getenv("DB_PASSWORD"),
+        'HOST': 'localhost',
+        'PORT': '5432',
+        # 'DISABLE_SERVER_SIDE_CURSORS': True,
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -131,17 +131,27 @@ USE_I18N = True
 
 USE_TZ = True
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = os.getenv("app_email")
+EMAIL_HOST_PASSWORD = os.getenv("app_password")
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
+# image upload, create filepath
+MEDIA_URL = '/media/'
 
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
-    'static/styles/',
-    'languages/static/css/',
+    'static/styles',
+    'static/media/users'
 ]
+# image upload, create filepath
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media')
 
 
 # Default primary key field type

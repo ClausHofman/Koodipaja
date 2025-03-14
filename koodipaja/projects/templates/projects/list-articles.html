@@ -1,26 +1,34 @@
-{% extends "main.html" %}
+{% extends "main.html" %} {% block content %}
 
-{% block content %}
-
-<a style="font-size:x-large;" href="{% url 'projects:list-page-titles' object2.id %}">Go Back</a>
-<div>
-    <a style="font-size:x-large;" href="{% url 'projects:create-article' object.id %}?next={{request.path}}">Create new
-        article</a>
+<div class="project-top-div">
+  <a class="project-top-link" style="font-size: x-large" href="{% url 'projects:list-page-titles' object2.id %}">Go
+    Back -&nbsp;</a>
+  <a class="project-top-link" style="font-size: x-large"
+    href="{% url 'projects:create-article' object.id %}?next={{request.path}}">Create new
+    article -&nbsp;</a>
+  <span class="project-top-link" href="#" id="VisibilityButton" style="font-size: x-large;cursor: pointer;"
+    onclick="renameElements()">
+    Update Article</span>
 </div>
-<hr>
-
+<hr class="project-top-hr" />
 {% for article in articles %}
 <table>
-    <tr>
-        <th></th>
-        <td>
-            <a style="font-size: x-large;" href="{% url 'projects:view-article-title' article.id %}">
-                {{article.title}}
-            </a>
-        </td>
-    </tr>
+  <tr>
+    <th></th>
+    <td>
+      <a style="font-size: x-large" href="{% url 'projects:view-article-title' article.id %}">
+        {{article.title}}&nbsp;&nbsp;
+      </a>
+    </td>
+    <td>
+      <div class="hide">
+        <a style="font-size: x-large;text-decoration: underline;"
+          href="{% url 'projects:update-article' article.id %}?next={{request.path}}">Update</a>
+        <a style="font-size: x-large;text-decoration: underline;"
+          href="{% url 'projects:delete-article' article.id %}?from=list-page-articles">&nbsp;&nbsp;Delete</a>
+      </div>
+    </td>
+  </tr>
 </table>
 
-{% endfor %}
-
-{% endblock content %}
+{% endfor %} {% endblock content %}

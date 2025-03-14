@@ -1,8 +1,12 @@
 from pprint import pprint
+from django.urls import reverse
 from .models import Project, ProjectTag, ProjectArticle, ProjectPageTitle, ProjectArticleTag
 from django.db.models import Q
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
+
+# def generate_url(view_name, *args, **kwargs):
+#     return reverse(view_name, args=args, kwargs=kwargs)
 
 def paginateProjects(request, projects, results):
     # Pagination
@@ -87,7 +91,6 @@ def utils_search_articles(request):
         Q(owner__name__icontains=search_query) |
         # does the Project tags queryset contain the tags that are input in the search_query (the filter)
         Q(tags__in=tags)
-        # we could add another value that says a user has to exist
     )
 
     return articles, search_query

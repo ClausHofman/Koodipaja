@@ -3,6 +3,8 @@ from django.contrib import admin
 from .models import (Project, ProjectPage, ProjectArticle, ProjectTag, ProjectPageTag, ProjectArticleTag,
                      ProjectTodo, ProjectTodoTag, ProjectPageTitle)
 
+from import_export.admin import ImportExportModelAdmin
+
 # Register your models here.
 admin.site.register(Project)
 # admin.site.register(ProjectTodo)
@@ -36,9 +38,11 @@ class ProjectArticleAdmin(admin.ModelAdmin):
     # users to search for and select a value. (in the django admin panel)
     raw_id_fields = ["project_page", "article_title"]
 
+# Tested importing and exporting (json, csv)
+# admin.site.register(ProjectArticle, ImportExportModelAdmin)
 
 @admin.register(ProjectPageTitle)
 class ProjectPageTitleAdmin(admin.ModelAdmin):
     list_display = ["title", "created", "project"]
     list_filter = ["project"]
-    search_fields = ['body', 'title']
+    search_fields = ['title']

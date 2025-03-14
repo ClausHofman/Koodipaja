@@ -1,0 +1,8 @@
+{% extends "main.html" %} {% block content %}
+<form method="POST">
+  {% csrf_token %}
+  <h1 id="booleanField">{{ my_object.my_boolean_field }}</h1>
+
+  <button id="toggle-button" data-object-id="{{ my_object.pk }}">Toggle</button>
+</form>
+{% endblock %}

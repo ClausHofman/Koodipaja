@@ -2,12 +2,14 @@
 
 {% block content %}
 
-<div>
-    <a style="font-size:x-large;" href="{% url 'projects:create-project' %}?next={{request.path}}">New Project
-        -&nbsp;</a><a style="font-size:x-large;"
-        href="{% url 'projects:create-project-tag' %}?next={{request.path}}">New Project Tag</a>
+<div class="project-top-div">
+    <a class="project-top-link" style="font-size: x-large"
+        href="{% url 'projects:create-project' %}?next={{request.path}}">New Project -&nbsp;</a><a
+        class="project-top-link" style="font-size: x-large"
+        href="{% url 'projects:create-project-tag' %}?next={{request.path}}">New Project
+        Tag</a>
 </div>
-<hr>
+<hr class="project-top-hr" style="margin-bottom: 5px;">
 
 {% for xx in project %}
 <table>

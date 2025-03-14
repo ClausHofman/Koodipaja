@@ -1,3 +1,27 @@
+.project-top-div {
+  background-color: lightblue;
+  height:40px;
+  margin-bottom:0%
+}
+.project-top-hr {
+  margin-top:0%;
+  margin-bottom:2px;
+}
+.project-top-link {
+  margin-right:0px;
+  color: black;
+  background-color:lightblue;
+}
+
+.hide {
+  visibility: hidden;
+  /* display: none; */
+}
+
+/* .pointer-events {
+
+} */
+
 .body {
   background-color: rgb(170, 240, 179);
 }
@@ -5,12 +29,6 @@
 a:link {
   text-decoration: none;
 }
-
-a:hover {
-  text-decoration: underline;
-}
-
-
 .navbar a:hover {
   float: left;
   font-size: 30px;
@@ -62,6 +80,179 @@ a:hover {
 .dropdown:hover .dropdown-content {
   display: block;
 }
+
+/*
+Grid
+*/
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+
+.grid>.column {
+  min-width: 28rem;
+  margin-bottom: 2.5rem;
+}
+
+.grid--three>.column {
+  flex-basis: 100%;
+}
+
+@media screen and (min-width: 800px) {
+  .grid--three {
+    margin-right: -2%;
+  }
+
+  .grid--three>.column {
+    margin-right: 2%;
+  }
+
+  .grid--three>.column {
+    flex-basis: 48%;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .grid--three {
+    margin-right: -2.33%;
+  }
+
+  .grid--three>.column {
+    margin-right: 2.33%;
+  }
+
+  .grid--three>.column {
+    flex-basis: 28%;
+  }
+}
+
+.grid--two>.column {
+  flex-basis: 100%;
+}
+
+@media screen and (min-width: 800px) {
+  .grid--two {
+    margin-right: -2%;
+  }
+
+  .grid--two>.column {
+    margin-right: 2%;
+  }
+
+  .grid--two>.column {
+    flex-basis: 48%;
+  }
+}
+
+.space-between {
+  margin-left: 0px;
+}
+
+.margin-left-50 {
+  margin-left: 50%;
+}
+
+/*
+Tables
+*/
+
+.tables-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: normal;
+}
+
+.arrow-cell {
+  position: relative;
+  text-align: center;
+}
+
+.left-arrow:before,
+.right-arrow:after {
+  content: '';
+  /* 'HTML entity for '<' */
+}
+
+.left-arrow:before {
+  padding-right: 5px;
+  /* Adjust the padding as needed */
+}
+
+.right-arrow:after {
+  content: '';
+  /* HTML entity for '>' */
+  padding-left: 5px;
+  /* Adjust the padding as needed */
+}
+
+.up-arrow:before,
+.down-arrow:after {
+  content: '\002D';
+  /* HTML entity for '-' */
+}
+
+.up-arrow:before {
+  padding-bottom: 5px;
+  /* Adjust the padding as needed */
+}
+
+.down-arrow:after {
+  content: '\002B';
+  /* HTML entity for '+' */
+  padding-top: 5px;
+  /* Adjust the padding as needed */
+}
+
+
+/* .table-container {
+  display: flex;
+}
+
+.table-container .table {
+  width: 48%;
+} */
+
+
+
+/* .table-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.table {
+  width: 30%;
+} */
+
+/*
+#my-id {
+  background-color: yellow;
+  border: 1px solid black;
+}
+<div id="my-id">This div has the "my-id" ID applied to it.</div>
+*/
+
+/*
+<div class="parent">
+  <p class="child">Child 1</p>
+  <p class="child">Child 2</p>
+  <p class="child">Child 3</p>
+</div>
+
+.parent {
+  background-color: lightgray;
+  padding: 10px;
+}
+
+.parent .child {
+  font-weight: bold;
+  color: blue;
+}
+
+*/
+
+
 
 /* .dropdown-content {
   display: none;

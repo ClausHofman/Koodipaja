@@ -1,0 +1,31 @@
+{% extends "main.html" %} {% block content %}
+
+<a href="{{request.GET.next}}">Go Back</a>
+
+<br>
+
+{% if page == 'list-page-articles' %}
+
+<p style="font-size: 2em;">Are you sure you want to delete the article
+    titled" <strong>{{article_to_delete.title}}</strong>"?</p>
+<form method="post">
+    {% csrf_token %}
+    <button style="font-size: 1.5em; padding: 10px 20px;" type="submit">Yes, delete</button>
+</form>
+
+{% elif page == 'list-page-titles' %}
+
+<p style="font-size: 2em;">Are you sure you want to delete the title" <strong>{{page_title_to_delete.title}}</strong>"?
+</p>
+<form method="post">
+    {% csrf_token %}
+    <button style="font-size: 1.5em; padding: 10px 20px;" type="submit">Yes, delete</button>
+</form>
+
+{% else %}
+
+<p style="font-size: 2em;">Page not found!</p>
+
+{% endif %}
+
+{% endblock content %}

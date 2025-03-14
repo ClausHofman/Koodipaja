@@ -58,6 +58,16 @@ class ProjectArticleForm(ModelForm):
         }
 
 
+class UpdateProjectArticleForm(ModelForm):
+    class Meta:
+        model = ProjectArticle
+        fields = ['title', 'body']
+        widgets = {
+            'body': forms.Textarea(attrs={'rows':50, 'cols': 150}),
+            'title':forms.TextInput(attrs={'size': 147}),
+        }
+
+
 class ProjectArticleTagForm(ModelForm):
     class Meta:
         model = ProjectArticleTag

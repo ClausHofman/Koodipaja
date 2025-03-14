@@ -1,9 +1,10 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 
-app_name = 'projects'
-
 urlpatterns = [
+    
+    path('delete-article/<str:pk>/', views.delete_item, name='delete-article'),
+    path('delete-page-title/<str:pk>/', views.delete_item, name='delete-page-title'),
     path('list-projects/', views.listProjects, name='list-projects'),
     path('list-project-pages/<str:pk>/',
          views.viewSingleProject, name='list-project-pages'),
@@ -17,6 +18,7 @@ urlpatterns = [
          views.viewPageTitle, name='list-page-articles'),
     path('create-project-article/<str:pk>/',
          views.createProjectArticle, name='create-article'),
+    path('update-article/<str:pk>/', views.updateArticle, name='update-article'),
     path('create-project-page-tag/<str:pk>/',
          views.createProjectPageTag, name="create-project-page-tag"),
     path('create-project-page-title/<str:pk>/',
@@ -27,3 +29,5 @@ urlpatterns = [
     path('search-article-titles/', views.search_articles,
          name='search-article-titles'),
 ]
+
+app_name = 'projects'

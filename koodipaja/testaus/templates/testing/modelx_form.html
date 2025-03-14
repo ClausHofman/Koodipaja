@@ -1,0 +1,5 @@
+<form id="add-x-form" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Add Model X</button>
+</form>
