@@ -1,4 +1,4 @@
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse, HttpResponseNotFound
 from django.shortcuts import render, redirect, get_object_or_404
 from users.models import Profile
 from .models import Project, ProjectPage, ProjectPageTitle, ProjectArticle
@@ -6,7 +6,9 @@ from .forms import (ProjectForm, ProjectTagForm, ProjectPageForm, ProjectArticle
                     ProjectPageTagForm, ProjectPageTitleForm, UpdateProjectArticleForm)
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.urls import resolve
 from .utils import searchProjects, paginateProjects, utils_search_articles, utils_search_titles
+from urllib.parse import urlparse
 from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -79,7 +81,42 @@ def search_titles(request):
     # pprint(context)
     return render(request, 'projects/search_page_titles.html', context)
 
+# Delete #
+@login_required(login_url='users:login')
+def delete_item(request, pk):
+    # Get the query parameter
+    from_page = request.GET.get('from')
+    print(f"Query Parameter 'from': {from_page}")  # Debug
 
+    if not from_page:
+        return HttpResponseNotFound("Invalid or missing 'from' parameter.")
+
+    if from_page == 'list-page-articles':
+        # Handle deletion for articles
+        page_title = get_object_or_404(ProjectPageTitle, projectarticle__id=pk)
+        article_to_delete = get_object_or_404(ProjectArticle, id=pk)
+
+        if request.method == 'POST':
+            article_to_delete.delete()
+            return redirect('projects:list-page-articles', pk=page_title.id)
+
+        return render(request, 'delete.html', {'article_to_delete': article_to_delete, 'page': 'list-page-articles'})
+
+    elif from_page == 'list-page-titles':
+        # Handle deletion for page titles
+        project_page = get_object_or_404(ProjectPage, projectpagetitle__id=pk)
+        page_title_to_delete = get_object_or_404(ProjectPageTitle, id=pk)
+
+        if request.method == 'POST':
+            page_title_to_delete.delete()
+            return redirect('projects:list-page-titles', pk=project_page.id)
+
+        return render(request, 'delete.html', {'page_title_to_delete': page_title_to_delete, 'page': 'list-page-titles'})
+
+    # Fallback for unsupported or invalid values
+    return HttpResponseNotFound("Invalid delete action context.")
+
+    
 @login_required(login_url='users:login')
 def listProjects(request):
     if request.user.is_authenticated:

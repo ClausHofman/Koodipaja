@@ -24,6 +24,8 @@
       <div class="hide">
         <a style="font-size: x-large;text-decoration: underline;"
           href="{% url 'projects:update-article' article.id %}?next={{request.path}}">Update</a>
+        <a style="font-size: x-large;text-decoration: underline;"
+          href="{% url 'projects:delete-article' article.id %}?from=list-page-articles">&nbsp;&nbsp;Delete</a>
       </div>
     </td>
   </tr>

@@ -3,6 +3,8 @@ from . import views
 
 urlpatterns = [
     
+    path('delete-article/<str:pk>/', views.delete_item, name='delete-article'),
+    path('delete-page-title/<str:pk>/', views.delete_item, name='delete-page-title'),
     path('list-projects/', views.listProjects, name='list-projects'),
     path('list-project-pages/<str:pk>/',
          views.viewSingleProject, name='list-project-pages'),
