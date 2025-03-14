@@ -13,11 +13,10 @@ from testaus.models import Muistipeli
 
 
 def loginUser(request):
-    page = 'login'
 
     # first check if the user is already authenticated
     if request.user.is_authenticated:
-        return redirect('kotisivu:kotisivu')
+        return redirect('projects:list-projects')
 
     if request.method == 'POST':
         # print(request.POST)
@@ -41,7 +40,7 @@ def loginUser(request):
             # and add that into our browser's cookies.
             login(request, user)
             # Review_login
-            return redirect(request.GET['next'] if 'next' in request.GET else 'kotisivu:kotisivu')
+            return redirect(request.GET['next'] if 'next' in request.GET else 'projects:list-projects')
         else:
             messages.error(request, 'Username or password is incorrect')
 

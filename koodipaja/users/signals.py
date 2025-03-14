@@ -22,13 +22,13 @@ def createProfile(sender, instance, created, **kwargs):
         )
 
 # comment this out if not using this, or errors at signup
-        send_mail(
-            "Welcome!",
-            "This is a development test email message.",
-            os.getenv("app_email"),
-            [profile.email],
-            fail_silently=False,
-        )
+        # send_mail(
+        #     "Welcome!",
+        #     "This is a development test email message.",
+        #     os.getenv("app_email"),
+        #     [profile.email],
+        #     fail_silently=False,
+        # )
 
 
 def updateUser(sender, instance, created, **kwargs):
