@@ -1,16 +1,20 @@
 .project-top-div {
   background-color: lightblue;
-  height:40px;
-  margin-bottom:0%
+  height: 2.6rem;
+  margin-bottom: 0%;
 }
+
 .project-top-hr {
-  margin-top:0%;
-  margin-bottom:2px;
+  margin-top: 0%;
+  margin-bottom: 2px;
+  font-size: auto !important;
 }
+
 .project-top-link {
-  margin-right:0px;
+  margin-right: 0px;
   color: black;
-  background-color:lightblue;
+  background-color: lightblue;
+  font-size: 1.6rem !important;
 }
 
 .hide {
@@ -29,6 +33,7 @@
 a:link {
   text-decoration: none;
 }
+
 .navbar a:hover {
   float: left;
   font-size: 30px;
@@ -204,6 +209,153 @@ Tables
   padding-top: 5px;
   /* Adjust the padding as needed */
 }
+
+/* Login */
+
+/* Center container */
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: rgb(170, 240, 179);
+  padding: 20px;
+}
+
+/* Form box styling */
+.auth-box {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Titles */
+.auth-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333333;
+}
+
+.auth-subtitle {
+  font-size: 1.5rem;
+  color: #666666;
+  margin-bottom: 25px;
+}
+
+/* Field and labels */
+.auth-field {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.auth-field label {
+  display: block;
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  color: #333333;
+}
+
+.auth-input {
+  width: 100%;
+  padding: 15px;
+  font-size: 1.3rem;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.auth-input:focus {
+  border-color: #0056b3;
+  box-shadow: 0 0 8px rgba(0, 86, 179, 0.3);
+}
+
+/* Error message */
+.auth-error {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 5px;
+}
+
+/* Submit and alternative action buttons */
+.auth-actions {
+  margin-top: 20px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 20px 30px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary {
+  padding: 10px 10px !important;
+  background-color: #007bff;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+.btn-secondary {
+  border-radius: 5px;
+  background-color: #007bff;
+}
+
+.btn-secondary:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+.btn-large {
+  padding: 20px 30px;
+  /* Big button for emphasis */
+  font-size: 1.3rem !important;
+}
+
+/* Alternative actions styling */
+.auth-alternative {
+  margin-top: 20px;
+  font-size: 1.5rem;
+}
+
+.auth-alternative a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.auth-alternative a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive design for mobile */
+@media (max-width: 768px) {
+  .auth-box {
+    padding: 20px;
+  }
+
+  .btn-large {
+    padding: 15px 20px;
+    font-size: 1.1rem;
+  }
+}
+
 
 
 /* .table-container {

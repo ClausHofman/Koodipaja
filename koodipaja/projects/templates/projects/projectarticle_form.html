@@ -4,8 +4,12 @@
 <main>
     <div>
         <div>
-            <a href="{{request.GET.next}}">Go Back</a>
-            <hr>
+            <div class="project-top-div">
+                <a class="project-top-link" style="font-size: x-large"
+                    href="{% url 'projects:list-page-articles' page_id.id %}">Go
+                    Back</a>
+            </div>
+            <hr class="project-top-hr" />
 
             <form class="form" action="" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
@@ -15,7 +19,9 @@
                     <tr>
                         <th>
                         <td>
-                            <label>{{field.label}}</label>
+                            <label>
+                                {{field.label}}
+                            </label>
                         </td>
                         </th>
                     </tr>

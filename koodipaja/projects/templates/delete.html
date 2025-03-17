@@ -1,10 +1,15 @@
 {% extends "main.html" %} {% block content %}
 
-<a href="{{request.GET.next}}">Go Back</a>
+{% if page == 'list-page-articles' %}
+
+<div class="project-top-div">
+    <a class="project-top-link" style="font-size: x-large"
+        href="{% url 'projects:list-page-articles' page_title.id %}">Go
+        Back</a>
+</div>
+<hr class="project-top-hr" />
 
 <br>
-
-{% if page == 'list-page-articles' %}
 
 <p style="font-size: 2em;">Are you sure you want to delete the article
     titled" <strong>{{article_to_delete.title}}</strong>"?</p>
@@ -14,6 +19,16 @@
 </form>
 
 {% elif page == 'list-page-titles' %}
+
+<div class="project-top-div">
+    <a class="project-top-link" style="font-size: x-large"
+        href="{% url 'projects:list-page-titles' project_page.id %}">Go
+        Back</a>
+</div>
+<hr class="project-top-hr" />
+
+
+<br>
 
 <p style="font-size: 2em;">Are you sure you want to delete the title" <strong>{{page_title_to_delete.title}}</strong>"?
 </p>

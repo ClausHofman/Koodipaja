@@ -100,7 +100,7 @@ def delete_item(request, pk):
             article_to_delete.delete()
             return redirect('projects:list-page-articles', pk=page_title.id)
 
-        return render(request, 'delete.html', {'article_to_delete': article_to_delete, 'page': 'list-page-articles'})
+        return render(request, 'delete.html', {'article_to_delete': article_to_delete, 'page': 'list-page-articles', 'page_title': page_title})
 
     elif from_page == 'list-page-titles':
         # Handle deletion for page titles
@@ -111,7 +111,7 @@ def delete_item(request, pk):
             page_title_to_delete.delete()
             return redirect('projects:list-page-titles', pk=project_page.id)
 
-        return render(request, 'delete.html', {'page_title_to_delete': page_title_to_delete, 'page': 'list-page-titles'})
+        return render(request, 'delete.html', {'page_title_to_delete': page_title_to_delete, 'page': 'list-page-titles', 'project_page': project_page})
 
     # Fallback for unsupported or invalid values
     return HttpResponseNotFound("Invalid delete action context.")
@@ -297,9 +297,8 @@ def createProjectArticle(request, pk):
             form.save()
 
             return redirect('projects:list-page-articles', pk)
-
-    context = {'form': form}
-    # context['object'] = ProjectPage.objects.get(id=pk)
+    page_id = ProjectPageTitle.objects.get(id=pk)
+    context = {'form': form, 'page_id': page_id}
     return render(request, "projects/projectarticle_form.html", context)
 
 

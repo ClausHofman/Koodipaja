@@ -5,78 +5,78 @@
 
 {% if page == 'register' %}
 
-<div class="auth">
-    <div style="padding-top: 10px;">
-        <form action="{% url 'users:register' %}" method="POST" class="form auth__form">
+<div class="auth-container">
+    <div class="auth-box" style="padding-top: 10px;">
+        <form action="{% url 'users:register' %}" method="POST" class="form auth-form">
             {% csrf_token %}
 
             {% for field in form %}
-
-            <div>
-                <label for="formInput#text">{{field.label}}</label>
+            <div class="auth-field">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
                 <br>
-                {{field}}
+                {{ field }}
 
                 {% for error in field.errors %}
-                <p style="color:red" text-center>{{error}}</p>
+                <p class="auth-error">{{ error }}</p>
                 {% endfor %}
             </div>
-
             {% endfor %}
 
             <br>
-            <div class="auth__actions">
-                <input style="border-color: black;" class="btn btn--sub btn--lg" type="submit" value="Create User" />
+            <div class="auth-actions">
+                <input class="btn btn-primary btn-large" type="submit" value="Create Account" />
             </div>
             <br>
+            <br>
         </form>
-        <div class="auth__alternative">
+
+        <div class="auth-alternative">
             <p>Already have an Account?</p>
-            <a href="{% url 'users:login' %}" style="border-color: black;" class="btn btn--sub btn--lg">Log In</a>
+            <br>
+            <a href="{% url 'users:login' %}" class="btn-secondary btn-large">Log In</a>
         </div>
     </div>
 </div>
+
+
+
 
 {% else %}
 
 
-<div class="auth">
-    <div>
-        <div>
-
-            <h3>Account Login</h3>
-            <p>Hello, Welcome Back!</p>
-        </div>
-        <form action="" method="POST" class="form auth__form">
+<div class="auth-container">
+    <div class="auth-box">
+        <h3 class="auth-title">Account Login</h3>
+        <p class="auth-subtitle" style="font-size: 25px;">Hello, Welcome Back!</p>
+        <form action="" method="POST" class="auth-form">
             {% csrf_token %}
-            {{form.as_p}}
-            <!-- Input:Username -->
-
-            <div class="form__field">
-                <label for="formInput#text">Username: </label>
-                <input class="input input--text" id="formInput#text" type="text" name="username"
+            <div class="auth-field">
+                <label for="username">Username</label>
+                <input class="auth-input" id="username" type="text" name="username"
                     placeholder="Enter your username..." />
             </div>
-
-            <!-- Input:Password -->
-            <div class="form__field">
-                <label for="formInput#password">Password: </label>
-                <input class="input input--password" id="formInput#passowrd" type="password" name="password"
-                    placeholder="••••••••" />
+            <div class="auth-field">
+                <label for="password">Password</label>
+                <input class="auth-input" id="password" type="password" name="password" placeholder="••••••••" />
             </div>
-            <div class="auth__actions">
-                <input class="btn btn--sub btn--lg" type="submit" value="Log In" />
-                <a href="{% url 'reset_password' %}">Forget Password?</a>
+            <div class="auth-actions">
+                <button class="btn btn-primary btn-large">Log In</button>
             </div>
+            <br>
+            <a href="{% url 'reset_password' %}" class="auth-link">Forgot Password?</a>
+            <br>
         </form>
-        <div class="auth__alternative">
-            <p>Don't have an Account?</p>
-            <a href="{% url 'users:register' %}">Sign Up</a>
+        <div class="auth-footer">
+            <p>Don't have an account? <a href="{% url 'users:register' %}" class="auth-footer-link">Sign Up</a></p>
         </div>
     </div>
 </div>
 
 
+
+
 {% endif %}
+
+<script src="{% static 'js/login_helper.js' %}"></script>
 
 {% endblock content %}

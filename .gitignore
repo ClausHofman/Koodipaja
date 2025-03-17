@@ -134,3 +134,6 @@ omia_harjoituksia
 /arkisto/
 /clear_goals/
 saved_test_files/
+
+login_helper.js
+login_info.json
